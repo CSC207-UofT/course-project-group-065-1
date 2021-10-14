@@ -228,6 +228,6 @@ public class InOutHandler {
         return (["mon", "tue", "wed", "thu", "fri", "sat", "sun"].contains(week)
                 && start.length() == 6 || end.length() == 6
                 && isInt(start.substring(0, 4)) || isInt(end.substring(0, 4))
-                && ["am", "pm"].contains(start.substring(4)) && ["am", "pm"].contains(end.substring(4)))
+                && ["am", "pm"].contains(start.substring(4)) && ["am", "pm"].contains(end.substring(4)));
     }
 }
