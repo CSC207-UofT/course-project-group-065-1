@@ -205,7 +205,7 @@ public class InOutHandler {
         }
 
         w.setSchedule(week, start, end);
-        return "schedule changed to "+week+" "+start+"-"+end+" for "+name", id: "+id+" in department"+w.getDepartment();
+        return "schedule changed to "+week+" "+start+"-"+end+" for "+name+", id: "+id+" in department"+w.getDepartment();
     }
 
     private static boolean isInt(String str) {
