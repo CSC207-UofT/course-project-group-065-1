@@ -225,7 +225,6 @@ public class InOutHandler {
         Returns true if a schedule object can be constructed with parameters (week, start, end),
         following 'www 0000am 0000pm' format
          */
-         */
         return (["mon", "tue", "wed", "thu", "fri", "sat", "sun"].contains(week)
                 && start.length() == 6 || end.length() == 6
                 && isInt(start.substring(0, 4)) || isInt(end.substring(0, 4))
