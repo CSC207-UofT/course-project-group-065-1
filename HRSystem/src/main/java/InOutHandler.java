@@ -212,7 +212,7 @@ public class InOutHandler {
         /*
         Returns true if str contains only numbers
          */
-        return text.matches("[0-9]+");
+        return str.matches("[0-9]+");
     }
     private static boolean isDouble(String str) {
         /*
