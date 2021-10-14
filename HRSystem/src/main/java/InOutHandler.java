@@ -11,7 +11,7 @@ public class InOutHandler {
         in = new Scanner(System.in);
     }
 
-    public int run(ArrayList<worker> workers, ArrayList<departmentHead> heads, int nextWorkerID, int nextHeadID) {
+    public int run(ArrayList<departmentHead> heads, int nextWorkerID, int nextHeadID) {
         /*
         exit - return 0,
         other - return 1
@@ -61,7 +61,7 @@ public class InOutHandler {
         return 1;
     }
 
-    private String handleCreateWorker(String input, int id, ArrayList<worker> workers, ArrayList<departmentHead> heads) {
+    private String handleCreateWorker(String input, int id, ArrayList<departmentHead> heads) {
         /*
         if successful, returns string representation of the created worker,
         else returns "invalid input"
@@ -83,7 +83,6 @@ public class InOutHandler {
         schedule sched = new schedule(week, start, end);
 
         worker newWork = new worker(name, salary, id, dep, sched);
-        workers.add(newWork);
         for (int i = 0; i < heads.length; i++) {
             if (heads.getDepartment().equals(dep)) {
                 heads.addWorkerToDepartment(newWork);
@@ -119,7 +118,7 @@ public class InOutHandler {
         return "name: "+name+" id: "+id+" department: "+dep+" is created";
     }
 
-    private String handleChangeSalary(String input, ArrayList<worker> workers, ArrayList<departmentHead> heads) {
+    private String handleChangeSalary(String input, ArrayList<departmentHead> heads) {
         /*
         input should be worker id, head id, change percentage(decimal)
          */
@@ -142,7 +141,7 @@ public class InOutHandler {
                 head = h;
             }
         }
-        for (worker w: workers) {
+        for (worker w: head.getWorkerInDepart()) {
             if (w.getID() == workId) {
                 wfound = true;
                 work = w;
