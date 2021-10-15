@@ -2,7 +2,6 @@ import java.util.*;
 public class InOutHandler {
     /*
     handles input
-
     only focuses on relevant input, extra content at end will be ignored
      */
     Scanner in;
