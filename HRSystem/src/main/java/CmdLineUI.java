@@ -16,6 +16,8 @@ public class CmdLineUI {
             System.out.println("Enter 6 followed by the id of the department head that want to be deleted separated by a space to delete a department head from the system");
             System.out.println("Enter 7 followed by the name of the worker that want to be searched separated by a space to search a worker with the given name from the system");
             System.out.println("Enter 8 followed by more if want to find department head with more years of experience than the given year, less if want to find department head with less years of experience and followed by the target year of experience separated by a space to search department head");
+            System.out.println("Enter 9 to check all workers and department heads created");
+            System.out.println("Enter exit to exit the system");
             System.out.println("Please enter what you want to do");
             Scanner in = new Scanner(System.in);
             input = in.nextLine();

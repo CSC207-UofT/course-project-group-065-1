@@ -42,6 +42,10 @@ public class SystemController {
             case "8":
                 output = this.headManager.searchByExperienceYear(split[1], Integer.parseInt(split[2]));
                 return output;
+            case "9":
+                output = this.headManager.allHeads();
+                output.addAll(this.workerManager.allWorker());
+                return output;
             case "exit":
                 output.add("System exited");
                 return output;

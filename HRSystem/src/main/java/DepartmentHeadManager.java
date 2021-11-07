@@ -59,4 +59,12 @@ public class DepartmentHeadManager {
         }
         return headWithYear;
     }
+
+    public ArrayList<String> allHeads(){
+        ArrayList<String> out = new ArrayList<>();
+        for(DepartmentHead head : this.heads){
+            out.add(head.toString());
+        }
+        return out;
+    }
 }

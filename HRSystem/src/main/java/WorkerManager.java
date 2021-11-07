@@ -85,5 +85,13 @@ public class WorkerManager {
         }
         return workerWithName;
     }
+
+    public ArrayList<String> allWorker(){
+        ArrayList<String> output = new ArrayList<>();
+        for(Worker worker :  this.workers){
+            output.add(worker.toString());
+        }
+        return output;
+    }
 }
 
