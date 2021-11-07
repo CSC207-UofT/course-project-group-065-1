@@ -43,7 +43,7 @@ public class SystemController {
                 output = this.headManager.searchByExperienceYear(split[1], Integer.parseInt(split[2]));
                 return output;
             case "exit":
-                output.add("exit the system");
+                output.add("System exited");
                 return output;
             default:
                 output.add("Incorrect command entered, please try again");

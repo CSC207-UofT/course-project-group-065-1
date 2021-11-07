@@ -19,6 +19,6 @@ public class DepartmentHead extends Employees{
 
     @Override
     public String toString(){
-        return "department head " + this.getName() + " with ID " + this.getID() + " in department " + this.getDepartment() + " with " + this.YearOfExperience + "years of experience";
+        return "department head " + this.getName() + " with ID " + this.getID() + " in department " + this.getDepartment() + " with " + this.YearOfExperience + " years of experience";
     }
 }
