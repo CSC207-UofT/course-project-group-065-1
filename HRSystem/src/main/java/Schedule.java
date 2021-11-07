@@ -1,4 +1,4 @@
-public class schedule {
+public class Schedule {
     private String dayOfWeek;
     private String startTime;
     private String endTime;
@@ -11,7 +11,7 @@ public class schedule {
      * @param endTime the time the schedule end
      */
 
-    public schedule(String dayOfWeek, String startTime, String endTime){
+    public Schedule(String dayOfWeek, String startTime, String endTime){
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;

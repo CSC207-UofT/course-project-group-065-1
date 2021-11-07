@@ -1,4 +1,4 @@
-public class employees {
+public class Employees {
     private final String name;
     private final int ID;
     private final String department;
@@ -10,7 +10,7 @@ public class employees {
      * @param department the department of the employee
      */
 
-    public employees(String name, int ID, String department){
+    public Employees(String name, int ID, String department){
         this.name = name;
         this.ID = ID;
         this.department = department;

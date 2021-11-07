@@ -1,6 +1,6 @@
-public class worker extends employees {
+public class Worker extends Employees {
     private double salary;
-    private final schedule schedule;
+    private final Schedule schedule;
 
     /**
      * constructor for worker
@@ -11,7 +11,7 @@ public class worker extends employees {
      * @param schedule the schedule of the worker
      */
 
-    public worker(String name, int salary, int ID, String department, schedule schedule){
+    public Worker(String name, int salary, int ID, String department, Schedule schedule){
         super(name, ID, department);
         this.salary = salary;
         this.schedule = schedule;
@@ -49,7 +49,12 @@ public class worker extends employees {
      * get the schedule of the worker
      * @return the schedule of the worker
      */
-    public schedule getSchedule(){
+    public Schedule getSchedule(){
         return this.schedule;
+    }
+
+    @Override
+    public String toString(){
+        return "worker " + this.getName() + " with id " + this.getID() + " in department " + this.getDepartment() + " with salary " + this.salary + " and schedule on " + this.schedule.toString();
     }
 }
