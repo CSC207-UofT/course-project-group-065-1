@@ -7,7 +7,8 @@ public class CmdLineUI {
         System.out.println("Welcome to the HR System");
         SystemController inOut = new SystemController();// define a SystemController which takes call method and return message based on user input
         String input;
-        do{// repeated running the InOutHandler while the map returned doesn't have a key of -1
+        do{// repeated running the InOutHandler while the input is not exit
+            // display the menu option for user
             System.out.println("Enter 1 followed by name, salary, department, day of the week, start time, end time of the schedule each separated by a space to create a new worker");
             System.out.println("Enter 2 followed by name, department, number of year of experience each separated by a space to create a department head");
             System.out.println("Enter 3 followed by the id of the worker and the percent you want to change the salary by (positive means increase, negative means decrease) each separated by a space to change salary of a worker");
@@ -21,7 +22,9 @@ public class CmdLineUI {
             System.out.println("Please enter what you want to do");
             Scanner in = new Scanner(System.in);
             input = in.nextLine();
+            // produce the message that the user should see
             ArrayList<String> output = inOut.run(input);
+            // display the output
             for(String out : output){
                 System.out.println(out);
             }

@@ -53,6 +53,10 @@ public class Worker extends Employees {
         return this.schedule;
     }
 
+    /**
+     * return the string representation of worker
+     * @return the string represetation of worker
+     */
     @Override
     public String toString(){
         return "worker " + this.getName() + " with id " + this.getID() + " in department " + this.getDepartment() + " with salary " + this.salary + " and schedule on " + this.schedule.toString();

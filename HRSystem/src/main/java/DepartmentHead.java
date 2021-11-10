@@ -13,10 +13,18 @@ public class DepartmentHead extends Employees{
         this.YearOfExperience = YearOfExperience;
     }
 
+    /**
+     * return the year of experience of the department head
+     * @return the year of experience of the department head
+     */
     public int getYearOfExperience(){
         return this.YearOfExperience;
     }
 
+    /**
+     * convert the department head object into a string representation
+     * @return the string representation of a department head
+     */
     @Override
     public String toString(){
         return "department head " + this.getName() + " with ID " + this.getID() + " in department " + this.getDepartment() + " with " + this.YearOfExperience + " years of experience";

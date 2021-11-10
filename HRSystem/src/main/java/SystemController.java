@@ -17,7 +17,7 @@ public class SystemController {
     public ArrayList<String> run(String input) {
         String [] split = input.split(" ");// take in input and split them by space
         ArrayList<String> output = new ArrayList<>();
-        switch(split[0]){// break into different cases based on the first words of the user's input
+        switch(split[0]){// break into different cases based on the first number of the user's input
             case "1":
                 output.add(this.workerManager.CreateWorker(split[1], Integer.parseInt(split[2]), split[3], split[4], split[5], split[6]));
                 return output;
