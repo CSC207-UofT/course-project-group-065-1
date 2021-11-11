@@ -1,3 +1,6 @@
+package entities;
+
+
 import java.io.Serializable;
 
 public class Worker extends Employees implements Serializable {
@@ -57,7 +60,7 @@ public class Worker extends Employees implements Serializable {
 
     /**
      * return the string representation of worker
-     * @return the string represetation of worker
+     * @return the string representation of worker
      */
     @Override
     public String toString(){

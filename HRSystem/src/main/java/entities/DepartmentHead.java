@@ -1,3 +1,6 @@
+package entities;
+
+
 import java.io.Serializable;
 
 public class DepartmentHead extends Employees implements Serializable {

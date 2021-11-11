@@ -1,3 +1,4 @@
+import DepartmentHeadCommands.DepartmentHeadManager;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class DepartmentHeadManagerTest {
     @Test
     public void testCreateDepartmentHead() throws IOException {
         manager = new DepartmentHeadManager();
-        String output = manager.createDepartmentHead("Bob", "bakery", 10);
+        String output = manager.createDepartmentHead("Bob", "bakery", 10).get(0);
         String expected = "department head Bob with id 0, department bakery and 10 years of experience is created";
         Assertions.assertEquals(expected, output);
     }
@@ -25,7 +26,7 @@ public class DepartmentHeadManagerTest {
     public void testDeleteHead() throws IOException {
         manager = new DepartmentHeadManager();
         manager.createDepartmentHead("Bob", "bakery", 10);
-        String output = manager.deleteHead(0);
+        String output = manager.deleteHead(0).get(0);
         String expected = "department head with id 0 is deleted from the system";
         Assertions.assertEquals(expected, output);
     }

@@ -1,3 +1,5 @@
+package entities;
+
 import java.io.Serializable;
 
 public class Employees implements Serializable {

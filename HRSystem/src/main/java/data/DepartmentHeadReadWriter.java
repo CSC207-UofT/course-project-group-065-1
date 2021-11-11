@@ -1,3 +1,5 @@
+package data;
+
 import java.io.*;
 
 public class DepartmentHeadReadWriter {
