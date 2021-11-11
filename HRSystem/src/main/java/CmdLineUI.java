@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.*;
 public class CmdLineUI {
     /**
      * run the command line user interface
      */
-    public void run(){
+    public void run() throws IOException {
         System.out.println("Welcome to the HR System");
         SystemController inOut = new SystemController();// define a SystemController which takes call method and return message based on user input
         String input;

@@ -1,4 +1,6 @@
-public class DepartmentHead extends Employees{
+import java.io.Serializable;
+
+public class DepartmentHead extends Employees implements Serializable {
     private final int YearOfExperience;
 
     /**

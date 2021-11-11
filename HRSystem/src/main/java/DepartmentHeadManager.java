@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DepartmentHeadManager {
 
     final private ArrayList<DepartmentHead> heads;
     private int nextHeadID;
-
+    DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
     /**
      * Constructor for department head manager
      */
@@ -22,12 +23,13 @@ public class DepartmentHeadManager {
      * @param yearOfExperience the number of years of experience the department head has
      * @return the message that user should see
      */
-    public String createDepartmentHead(String name, String department, int yearOfExperience){
+    public String createDepartmentHead(String name, String department, int yearOfExperience) throws IOException {
         // create a new department head with the constructor and add it to the list of department head
         this.heads.add(new DepartmentHead(name, this.nextHeadID, department, yearOfExperience));
         // increase the next department head id by 1
         this.nextHeadID += 1;
         // return the detail of the department head created
+        readWriter.saveToFile("heads.ser", heads);
         return "department head " + name + " with id " + (this.nextHeadID - 1) + ", department " + department + " and "
                 + yearOfExperience + " years of experience is created";
     }
@@ -37,10 +39,11 @@ public class DepartmentHeadManager {
      * @param headID the department head id that wants to be deleted
      * @return the message that the user should see
      */
-    public String deleteHead(int headID){
+    public String deleteHead(int headID) throws IOException {
         for(DepartmentHead head : this.heads){
             if(head.getID() == headID){// get the department head wanted to be deleted
                 this.heads.remove(head);// remove the department head from the list and return the message
+                readWriter.saveToFile("heads.ser", heads);
                 return "department head with id " + headID + " is deleted from the system";
             }
         }

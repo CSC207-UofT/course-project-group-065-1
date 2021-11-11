@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 public class SystemController {
 
@@ -14,7 +15,7 @@ public class SystemController {
      * @param input the input typed by the user
      * @return the output that the user should see.
      */
-    public ArrayList<String> run(String input) {
+    public ArrayList<String> run(String input) throws IOException {
         String [] split = input.split(" ");// take in input and split them by space
         ArrayList<String> output = new ArrayList<>();
         switch(split[0]){// break into different cases based on the first number of the user's input

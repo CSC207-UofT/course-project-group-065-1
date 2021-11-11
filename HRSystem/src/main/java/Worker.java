@@ -1,4 +1,6 @@
-public class Worker extends Employees {
+import java.io.Serializable;
+
+public class Worker extends Employees implements Serializable {
     private double salary;
     private final Schedule schedule;
 

@@ -1,4 +1,6 @@
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable {
     private String dayOfWeek;
     private String startTime;
     private String endTime;
