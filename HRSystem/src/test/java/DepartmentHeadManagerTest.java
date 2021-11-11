@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.util.*;
 
 public class DepartmentHeadManagerTest {
@@ -12,7 +14,7 @@ public class DepartmentHeadManagerTest {
     }
 
     @Test
-    public void testCreateDepartmentHead(){
+    public void testCreateDepartmentHead() throws IOException {
         manager = new DepartmentHeadManager();
         String output = manager.createDepartmentHead("Bob", "bakery", 10);
         String expected = "department head Bob with id 0, department bakery and 10 years of experience is created";
@@ -20,7 +22,7 @@ public class DepartmentHeadManagerTest {
     }
 
     @Test
-    public void testDeleteHead(){
+    public void testDeleteHead() throws IOException {
         manager = new DepartmentHeadManager();
         manager.createDepartmentHead("Bob", "bakery", 10);
         String output = manager.deleteHead(0);
@@ -29,7 +31,7 @@ public class DepartmentHeadManagerTest {
     }
 
     @Test
-    public void testSearchByExperienceYear(){
+    public void testSearchByExperienceYear() throws IOException {
         manager = new DepartmentHeadManager();
         manager.createDepartmentHead("Bob", "bakery", 10);
         manager.createDepartmentHead("Victor", "clothes", 20);
@@ -40,7 +42,7 @@ public class DepartmentHeadManagerTest {
     }
 
     @Test
-    public void testAllHeads(){
+    public void testAllHeads() throws IOException {
         manager = new DepartmentHeadManager();
         manager.createDepartmentHead("Bob", "bakery", 10);
         manager.createDepartmentHead("Victor", "clothes", 20);

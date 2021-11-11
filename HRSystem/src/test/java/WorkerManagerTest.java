@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.util.*;
 
 public class WorkerManagerTest {
@@ -11,7 +13,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testCreateWorker(){
+    public void testCreateWorker() throws IOException {
         manager = new WorkerManager();
         String output = manager.CreateWorker("Bob", 2000, "bakery", "Monday", "9AM", "4PM");
         String expected = "worker Bob with id 0, salary 2000 department bakery is created";
@@ -19,7 +21,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testChangeSalary() {
+    public void testChangeSalary() throws IOException {
         manager = new WorkerManager();
         manager.CreateWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
         String output = manager.changeSalary(0, 0.5);
@@ -28,7 +30,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testChangeSchedule(){
+    public void testChangeSchedule() throws IOException {
         manager = new WorkerManager();
         manager.CreateWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
         String output = manager.changeSchedule(0, "Tuesday", "11AM", "9PM");
@@ -37,7 +39,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testDeleteWorker(){
+    public void testDeleteWorker() throws IOException {
         manager = new WorkerManager();
         manager.CreateWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
         String output = manager.deleteWorker(0);
@@ -46,7 +48,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testSearchByName(){
+    public void testSearchByName() throws IOException {
         manager = new WorkerManager();
         manager.CreateWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
         manager.CreateWorker("Bob", 3000, "clothes", "Friday", "1AM", "10PM");
@@ -58,7 +60,7 @@ public class WorkerManagerTest {
     }
 
     @Test
-    public void testAllWorker(){
+    public void testAllWorker() throws IOException {
         manager = new WorkerManager();
         manager.CreateWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
         manager.CreateWorker("Victor", 3000, "clothes", "Friday", "1AM", "10PM");
