@@ -3,7 +3,6 @@ package DemoRun;
 /*
  These imports are used to initialize 2 new ser files so uncomment them only when creating the 2 new ser files
  import Data.DepartmentHeadReadWriter;
- import Data.ReadWriter;
  import java.util.*;
  import Data.WorkerReadWriter;
 */
@@ -29,7 +28,7 @@ public class DemoRun {
         workerReadWriter.saveToFile("workers.ser", new ArrayList<>());
         System.out.println(headReadWriter.readFromFile("heads.ser"));
         System.out.println(workerReadWriter.readFromFile("workers.ser"));
-         */
+        */
 
         // demo run of the HR System by define a new web.CmdLineUI instance and run the user interface
         CmdLineUI ui = new CmdLineUI();
