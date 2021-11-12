@@ -1,5 +1,4 @@
 package data;
-
 import java.io.IOException;
 
 public interface ReadWriter {

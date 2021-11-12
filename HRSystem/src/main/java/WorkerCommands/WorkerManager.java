@@ -8,15 +8,27 @@ import java.util.*;
 public class WorkerManager {
     final private ArrayList<Worker> workers;
     private int nextWorkerID;
-    WorkerReadWriter ReadWriter = new WorkerReadWriter();
+    ReadWriter readWriter;
     /**
      * Constructor of WorkerCommands.WorkerManager
      */
-    public WorkerManager() throws IOException, ClassNotFoundException {
-        // initialize the list of workers to empty
-        this.workers = ReadWriter.readFromFile("workers.ser");
-        // the next available id to 0
-        this.nextWorkerID = 0;
+    public WorkerManager(WorkerReadWriter readWriter) throws IOException, ClassNotFoundException {
+        // initialize the readWriter to the given readWriter
+        this.readWriter = readWriter;
+        // initialize the list of workers to list of workers in ser file
+        this.workers = readWriter.readFromFile("workers.ser");
+        // initialize the next available id to 0 if no workers in ser file or to largest id plus on if there is at least one worker
+        this.nextWorkerID = -1;
+        if(workers.isEmpty()){
+            this.nextWorkerID = 0;
+        }else{
+            for(Worker worker : this.workers){
+                if(worker.getID() > this.nextWorkerID){
+                    this.nextWorkerID = worker.getID();
+                }
+            }
+            this.nextWorkerID += 1;
+        }
     }
 
     /**
@@ -34,7 +46,9 @@ public class WorkerManager {
         this.workers.add(new Worker(name, salary, this.nextWorkerID, department, new Schedule(dayOfWeek, startTime, endTime)));
         // increase next available id by 1 and return detail of worker to user
         this.nextWorkerID += 1;
-        ReadWriter.saveToFile("workers.ser", workers);
+        // save the new list of workers to ser file
+        readWriter.saveToFile("workers.ser", workers);
+        //return the output
         ArrayList<String> output =  new ArrayList<>();
         output.add("worker " + name + " with id " + (this.nextWorkerID - 1) + ", salary " + salary + " department " + department + " is created");
         return output;
@@ -51,7 +65,8 @@ public class WorkerManager {
        for(Worker worker : this.workers){
            if(worker.getID() == workerID){// find the worker with the id and change their salary
                worker.setSalary(worker.getSalary() + worker.getSalary()*changePercent);
-               ReadWriter.saveToFile("workers.ser", workers);
+               // save the new list to ser file
+               readWriter.saveToFile("workers.ser", workers);
                output.add("the salary of " + worker.getName() + " with id " + worker.getID() + " has been changed to "
                        + worker.getSalary());
                return output;
@@ -75,7 +90,8 @@ public class WorkerManager {
         for(Worker worker : this.workers){
             if(worker.getID() == workerID){// find the worker with the id and change their schedule
                 worker.setSchedule(dayOfWeek, startTime, endTime);
-                ReadWriter.saveToFile("workers.ser", workers);
+                // save the new list to ser file
+                readWriter.saveToFile("workers.ser", workers);
                 output.add("schedule changed for " + worker.getName() + " with id " + worker.getID() + " in " +
                         worker.getDepartment() + " department with current schedule on " + worker.getSchedule().toString());
                 return output;
@@ -96,7 +112,8 @@ public class WorkerManager {
         for(Worker worker : this.workers){
             if(worker.getID() == workerID){// find the worker and remove it from the list
                 this.workers.remove(worker);
-                ReadWriter.saveToFile("workers.ser", workers);
+                // store the new list to ser file
+                readWriter.saveToFile("workers.ser", workers);
                 output.add("worker with id " + workerID + " is deleted from system");
                 return output;
             }

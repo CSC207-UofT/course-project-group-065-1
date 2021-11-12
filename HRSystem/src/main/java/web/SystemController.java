@@ -2,6 +2,9 @@ package web;
 
 import DepartmentHeadCommands.*;
 import WorkerCommands.*;
+import data.DepartmentHeadReadWriter;
+import data.WorkerReadWriter;
+
 import java.io.IOException;
 import java.util.*;
 public class SystemController {
@@ -10,9 +13,12 @@ public class SystemController {
     HeadCommandExecutor headExecutor;
 
 
+    /**
+     * Constructor of the controller
+     */
     public SystemController() throws IOException, ClassNotFoundException {
-        this.workerExecutor = new WorkerCommandExecutor();
-        this.headExecutor = new HeadCommandExecutor();
+        this.workerExecutor = new WorkerCommandExecutor(new WorkerReadWriter());
+        this.headExecutor = new HeadCommandExecutor(new DepartmentHeadReadWriter());
     }
 
     /**
