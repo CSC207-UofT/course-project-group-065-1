@@ -1,7 +1,7 @@
 package DepartmentHeadCommands;
 
-import entities.DepartmentHead;
-import data.*;
+import Entities.DepartmentHead;
+import Data.*;
 import java.io.IOException;
 import java.util.ArrayList;
 

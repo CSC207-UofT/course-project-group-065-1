@@ -1,6 +1,6 @@
 package DepartmentHeadCommands;
 
-import data.DepartmentHeadReadWriter;
+import Data.DepartmentHeadReadWriter;
 
 import java.io.IOException;
 import java.util.*;

@@ -1,9 +1,9 @@
-package web;
+package Web;
 
 import DepartmentHeadCommands.*;
 import WorkerCommands.*;
-import data.DepartmentHeadReadWriter;
-import data.WorkerReadWriter;
+import Data.DepartmentHeadReadWriter;
+import Data.WorkerReadWriter;
 
 import java.io.IOException;
 import java.util.*;

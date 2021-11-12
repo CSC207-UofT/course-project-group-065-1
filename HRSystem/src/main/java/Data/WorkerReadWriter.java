@@ -1,6 +1,6 @@
-package data;
+package Data;
 
-import entities.Worker;
+import Entities.Worker;
 
 import java.io.*;
 import java.util.ArrayList;

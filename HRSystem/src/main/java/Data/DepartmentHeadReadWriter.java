@@ -1,6 +1,6 @@
-package data;
+package Data;
 
-import entities.DepartmentHead;
+import Entities.DepartmentHead;
 
 import java.io.*;
 import java.util.ArrayList;

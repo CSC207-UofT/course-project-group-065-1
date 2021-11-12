@@ -1,8 +1,8 @@
 package WorkerCommands;
 
-import entities.Schedule;
-import entities.Worker;
-import data.*;
+import Entities.Schedule;
+import Entities.Worker;
+import Data.*;
 import java.io.IOException;
 import java.util.*;
 public class WorkerManager {

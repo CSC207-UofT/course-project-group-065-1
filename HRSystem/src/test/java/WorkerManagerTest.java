@@ -3,7 +3,7 @@ When running this test, you will have to create 2 new ser files in order for thi
 serializations.
  */
 import WorkerCommands.WorkerManager;
-import data.WorkerReadWriter;
+import Data.WorkerReadWriter;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

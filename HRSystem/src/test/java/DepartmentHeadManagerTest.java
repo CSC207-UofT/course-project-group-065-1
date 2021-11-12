@@ -3,7 +3,7 @@ When running this test, you will have to create 2 new ser files in order for thi
 serializations.
  */
 import DepartmentHeadCommands.DepartmentHeadManager;
-import data.DepartmentHeadReadWriter;
+import Data.DepartmentHeadReadWriter;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

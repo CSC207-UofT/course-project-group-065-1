@@ -1,6 +1,6 @@
 package WorkerCommands;
 
-import data.WorkerReadWriter;
+import Data.WorkerReadWriter;
 
 import java.io.IOException;
 import java.util.*;
