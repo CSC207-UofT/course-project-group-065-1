@@ -1,4 +1,4 @@
-package Web;
+package UI;
 
 import DepartmentHeadCommands.*;
 import WorkerCommands.*;

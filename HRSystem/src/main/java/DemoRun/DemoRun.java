@@ -7,7 +7,7 @@ package DemoRun;
  import Data.WorkerReadWriter;
 */
 
-import Web.CmdLineUI;
+import UI.CmdLineUI;
 
 import java.io.IOException;
 

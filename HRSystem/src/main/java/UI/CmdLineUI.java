@@ -1,4 +1,4 @@
-package Web;
+package UI;
 
 
 import java.io.IOException;
