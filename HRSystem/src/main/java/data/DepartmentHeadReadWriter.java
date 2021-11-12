@@ -1,8 +1,12 @@
 package data;
 
-import java.io.*;
+import entities.DepartmentHead;
+import entities.Worker;
 
-public class DepartmentHeadReadWriter {
+import java.io.*;
+import java.util.ArrayList;
+
+public class DepartmentHeadReadWriter implements ReadWriter{
     public void saveToFile(String filePath, Object workers) throws IOException {
         FileOutputStream fileOutputStream
                 = new FileOutputStream(filePath);
@@ -11,13 +15,13 @@ public class DepartmentHeadReadWriter {
             objectOutputStream.flush();
         }
     }
-    public Object readFromFile(String filePath) throws IOException, ClassNotFoundException {
+    public ArrayList<DepartmentHead> readFromFile(String filePath) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream
                 = new FileInputStream(filePath);
         ObjectInputStream objectInputStream
                 = new ObjectInputStream(fileInputStream);
-        Object workers = objectInputStream.readObject();
+        ArrayList<DepartmentHead> heads = (ArrayList<DepartmentHead>) objectInputStream.readObject();
         objectInputStream.close();
-        return workers;
+        return heads;
     }
 }

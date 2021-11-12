@@ -12,9 +12,9 @@ public class WorkerManager {
     /**
      * Constructor of WorkerCommands.WorkerManager
      */
-    public WorkerManager(){
+    public WorkerManager() throws IOException, ClassNotFoundException {
         // initialize the list of workers to empty
-        this.workers = new ArrayList<>();
+        this.workers = ReadWriter.readFromFile("workers.ser");
         // the next available id to 0
         this.nextWorkerID = 0;
     }

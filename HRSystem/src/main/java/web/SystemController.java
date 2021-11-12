@@ -10,7 +10,7 @@ public class SystemController {
     HeadCommandExecutor headExecutor;
 
 
-    public SystemController(){
+    public SystemController() throws IOException, ClassNotFoundException {
         this.workerExecutor = new WorkerCommandExecutor();
         this.headExecutor = new HeadCommandExecutor();
     }

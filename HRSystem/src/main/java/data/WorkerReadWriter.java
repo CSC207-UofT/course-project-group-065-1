@@ -1,8 +1,11 @@
 package data;
 
-import java.io.*;
+import entities.Worker;
 
-public class WorkerReadWriter {
+import java.io.*;
+import java.util.ArrayList;
+
+public class WorkerReadWriter implements ReadWriter{
     public void saveToFile(String filePath, Object workers) throws IOException {
         FileOutputStream fileOutputStream
                 = new FileOutputStream(filePath);
@@ -11,12 +14,12 @@ public class WorkerReadWriter {
             objectOutputStream.flush();
         }
     }
-    public Object readFromFile(String filePath) throws IOException, ClassNotFoundException {
+    public ArrayList<Worker> readFromFile(String filePath) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream
                 = new FileInputStream(filePath);
         ObjectInputStream objectInputStream
                 = new ObjectInputStream(fileInputStream);
-        Object workers = objectInputStream.readObject();
+        ArrayList<Worker> workers = (ArrayList<Worker>) objectInputStream.readObject();
         objectInputStream.close();
         return workers;
     }

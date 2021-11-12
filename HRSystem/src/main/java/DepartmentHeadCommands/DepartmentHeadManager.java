@@ -13,9 +13,10 @@ public class DepartmentHeadManager {
     /**
      * Constructor for department head manager
      */
-    public DepartmentHeadManager(){
+    public DepartmentHeadManager() throws IOException, ClassNotFoundException {
         // initialize the list of department head to an empty list which has no department head created
-        this.heads = new ArrayList<>();
+        //this.heads = new ArrayList<>();
+        this.heads = readWriter.readFromFile("heads.ser");
         // the next department head id initialize to 0
         this.nextHeadID = 0;
     }

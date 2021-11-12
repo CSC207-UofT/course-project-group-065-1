@@ -7,7 +7,7 @@ public class CmdLineUI {
     /**
      * run the command line user interface
      */
-    public void run() throws IOException {
+    public void run() throws IOException, ClassNotFoundException {
         System.out.println("Welcome to the HR System");
         SystemController inOut = new SystemController();// define a web.SystemController which takes call method and return message based on user input
         String input;

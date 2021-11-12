@@ -5,7 +5,7 @@ import java.util.*;
 public class HeadCommandExecutor {
     private final DepartmentHeadManager headManager;
 
-    public HeadCommandExecutor(){
+    public HeadCommandExecutor() throws IOException, ClassNotFoundException {
         this.headManager = new DepartmentHeadManager();
     }
 
