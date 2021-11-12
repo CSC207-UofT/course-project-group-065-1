@@ -2,10 +2,10 @@ package DemoRun;
 
 /*
  These imports are used to initialize 2 new ser files so uncomment them only when creating the 2 new ser files
- import data.DepartmentHeadReadWriter;
- import data.ReadWriter;
+ import Data.DepartmentHeadReadWriter;
+ import Data.ReadWriter;
  import java.util.*;
- import data.WorkerReadWriter;
+ import Data.WorkerReadWriter;
 */
 
 import Web.CmdLineUI;
