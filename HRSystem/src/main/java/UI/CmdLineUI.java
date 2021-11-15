@@ -29,10 +29,92 @@ public class CmdLineUI {
             // produce the message that the user should see
             ArrayList<String> output = inOut.run(input);
             // display the output
-            for(String out : output){
-                System.out.println(out);
-            }
+            String operations = output.remove(0);
+            displayOutput(operations, output);
         }while(!input.equals("exit"));
         System.out.println("Thanks for using HR System");
+    }
+
+    /**
+     * helper function for the run which display output based on controller output
+     * @param operations the operations being performed
+     * @param info the key information needed to form output
+     */
+    private void displayOutput(String operations, ArrayList<String> info){
+        switch(operations){
+            case "create worker":
+                String [] information = info.get(0).split(" ");
+                System.out.println("worker " + information[0] + " with id " + information[1] + ", salary " + information[2] + " department " + information[3] + " is created");
+                break;
+            case "create head":
+                String [] headInformation = info.get(0).split(" ");
+                System.out.println("department head " + headInformation[0] + " with id " + headInformation[1] + ", department " + headInformation[2] + " and "
+                        + headInformation[3] + " years of experience is created");
+                break;
+            case "change salary":
+                String [] salaryInfo = info.get(0).split(" ");
+                if(salaryInfo[0].equals("S")) {
+                    System.out.println("the salary of " + salaryInfo[1] + " with id " + salaryInfo[2] + " has been changed to "
+                            + salaryInfo[3]);
+                }else{
+                    System.out.println("the given worker ID doesn't match with an ID in the system");
+                }
+                break;
+            case "change schedule":
+                String [] scheduleInfo = info.get(0).split(" ");
+                if(scheduleInfo[0].equals("S")) {
+                    System.out.println("schedule changed for " + scheduleInfo[1] + " with id " + scheduleInfo[2] + " in " +
+                            scheduleInfo[3] + " department with current schedule on " + scheduleInfo[4] + " from " + scheduleInfo[6] + " to " + scheduleInfo[8]);
+                }else{
+                    System.out.println("the given worker ID doesn't match with an ID in the system");
+                }
+                break;
+            case "delete worker":
+                String [] idInfo = info.get(0).split(" ");
+                if(idInfo[0].equals("S")) {
+                    System.out.println("worker with id " + idInfo[1] + " is deleted from system");
+                }else{
+                    System.out.println("worker ID not found");
+                }
+                break;
+            case "delete head":
+                String [] headIdInfo = info.get(0).split(" ");
+                if(headIdInfo[0].equals("S")) {
+                    System.out.println("department head with id " + headIdInfo[1] + " is deleted from the system");
+                }else{
+                    System.out.println("no department head found with the given ID");
+                }
+                break;
+            case "exit":
+                System.out.println("System exited");
+                break;
+            case "list":
+                if(info.size() == 1 && (info.get(0).split(" ")[0].equals("F") || info.get(0).split(" ")[0].equals("I"))){
+                    if(info.get(0).equals("F")){
+                        System.out.println("No worker found with the given name");
+                    }else if(info.get(0).equals("I")) {
+                        System.out.println("Incorrect input, please try again");
+                    }else{
+                        if(info.get(0).split(" ")[1].equals("M")){
+                            System.out.println("No department head found in the system with year of experience more than " + info.get(0).split(" ")[2]);
+                        }else{
+                            System.out.println("No department head found in the system with year of experience less than " + info.get(0).split(" ")[2]);
+                        }
+                    }
+                }else {
+                    for (String out : info) {
+                        String[] attributes = out.split(" ");
+                        if (attributes.length == 9) {
+                            System.out.println("worker " + attributes[0] + " with id " + attributes[1] + " in department " + attributes[2] + " with salary " + attributes[3] + " and schedule on " + attributes[4] +  " from " + attributes[6] + " to " + attributes[8]);
+                        } else {
+                            System.out.println("department head " + attributes[0] + " with ID " + attributes[1] + " in department " + attributes[2] + " with " + attributes[3] + " years of experience");
+                        }
+                    }
+                }
+                break;
+            default:
+                System.out.println("Incorrect command entered, please try again");
+                break;
+        }
     }
 }

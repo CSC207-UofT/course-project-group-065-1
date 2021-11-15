@@ -1,4 +1,4 @@
-package WorkerCommands;
+package WorkerOperations;
 
 import Entities.Schedule;
 import Entities.Worker;
@@ -39,7 +39,7 @@ public class WorkerManager {
      * @param dayOfWeek the day of the week of the worker's schedule
      * @param startTime the start time of the worker's schedule
      * @param endTime the end time of the worker's schedule
-     * @return the output string that the user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> createWorker(String name, int salary, String department, String dayOfWeek, String startTime, String endTime) throws IOException {
         // create a new worker with given information and add it to the list of worker
@@ -48,9 +48,9 @@ public class WorkerManager {
         this.nextWorkerID += 1;
         // save the new list of workers to ser file
         readWriter.saveToFile("workers.ser", workers);
-        //return the output
+        //return the information
         ArrayList<String> output =  new ArrayList<>();
-        output.add("worker " + name + " with id " + (this.nextWorkerID - 1) + ", salary " + salary + " department " + department + " is created");
+        output.add(name + " " + (this.nextWorkerID - 1) + " " + salary + " " + department);
         return output;
     }
 
@@ -58,7 +58,7 @@ public class WorkerManager {
      * change the salary of the given worker
      * @param workerID the ID of the worker
      * @param changePercent the percent that the salary change where positive mean increase and negative mean decrease
-     * @return the message that the user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> changeSalary(int workerID,  double changePercent) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
@@ -67,13 +67,12 @@ public class WorkerManager {
                worker.setSalary(worker.getSalary() + worker.getSalary()*changePercent);
                // save the new list to ser file
                readWriter.saveToFile("workers.ser", workers);
-               output.add("the salary of " + worker.getName() + " with id " + worker.getID() + " has been changed to "
-                       + worker.getSalary());
+               output.add("S " + worker.getName() + " " + worker.getID() + " " + worker.getSalary());
                return output;
            }
        }
-       // no worker with the given id, then return no worker found message
-        output.add("the given worker ID doesn't match with an ID in the system");
+       // no worker with the given id, then return no worker found symbol
+        output.add("N I"); // N I id short for no id found.
        return output;
     }
 
@@ -83,7 +82,7 @@ public class WorkerManager {
      * @param dayOfWeek the day of the week that the schedule should change to
      * @param startTime the start time that the schedule should change to
      * @param endTime the end time that the schedule should change to
-     * @return the message the user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> changeSchedule(int workerID, String dayOfWeek, String startTime, String endTime) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
@@ -92,20 +91,20 @@ public class WorkerManager {
                 worker.setSchedule(dayOfWeek, startTime, endTime);
                 // save the new list to ser file
                 readWriter.saveToFile("workers.ser", workers);
-                output.add("schedule changed for " + worker.getName() + " with id " + worker.getID() + " in " +
-                        worker.getDepartment() + " department with current schedule on " + worker.getSchedule().toString());
+                output.add("S " + worker.getName() + " " + worker.getID() + " " +
+                        worker.getDepartment() + " " + worker.getSchedule().toString());
                 return output;
             }
         }
-        // no worker with id, then return no worker found message
-        output.add("the given worker ID doesn't match with an ID in the system");
+        // no worker with the given id, then return no worker found symbol
+        output.add("N I");
         return output;
     }
 
     /**
      * delete worker with given id
      * @param workerID the id of worker that want to delete
-     * @return message that the user see
+     * @return the information needed to form output
      */
     public ArrayList<String> deleteWorker(int workerID) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
@@ -114,41 +113,41 @@ public class WorkerManager {
                 this.workers.remove(worker);
                 // store the new list to ser file
                 readWriter.saveToFile("workers.ser", workers);
-                output.add("worker with id " + workerID + " is deleted from system");
+                output.add("S " + workerID);
                 return output;
             }
         }
-        // no worker found, return no worker found message
-        output.add("worker ID not found");
+        // no worker with the given id, then return no worker found symbol
+        output.add("N I");
         return output;
     }
 
     /**
-     * return the list of workers with the given name
+     * return the list of workers' information with the given name
      * @param name the worker name that want to search
-     * @return the string representations of list of workers with the given name
+     * @return the information needed to form output
      */
     public ArrayList<String> searchByName(String name){
         ArrayList<String> workerWithName = new ArrayList<>();
         for(Worker worker : this.workers){
-            if(worker.getName().equals(name)){// found worker with given name and convert them to string
-                workerWithName.add(worker.toString());
+            if(worker.getName().equals(name)){// found worker with given name and convert their information to string
+                workerWithName.add(worker.getName() + " " + worker.getID() + " " + worker.getDepartment() + " " + worker.getSalary() + " " + worker.getSchedule().toString());
             }
         }
-        if(workerWithName.isEmpty()){// if no worker found with the name, return no worker found error
-            workerWithName.add("No worker found with the given name");
+        if(workerWithName.isEmpty()){// no worker with the given name, then return no worker found symbol
+            workerWithName.add("F");
         }
         return workerWithName;
     }
 
     /**
-     * return all workers in the system
-     * @return the string representation of all workers in the system
+     * return all workers' information in the system
+     * @return the information needed to form output
      */
     public ArrayList<String> allWorker(){
         ArrayList<String> output = new ArrayList<>();
-        for(Worker worker :  this.workers){// convert every worker to string and return them
-            output.add(worker.toString());
+        for(Worker worker :  this.workers){// convert every worker information to string and return them
+            output.add(worker.getName() + " " + worker.getID() + " " + worker.getDepartment() + " " + worker.getSalary() + " " + worker.getSchedule().toString());
         }
         return output;
     }

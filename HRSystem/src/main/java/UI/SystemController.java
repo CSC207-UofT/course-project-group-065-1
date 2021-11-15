@@ -1,10 +1,9 @@
 package UI;
 
-import DepartmentHeadCommands.*;
-import WorkerCommands.*;
+import DepartmentHeadOperations.*;
+import WorkerOperations.*;
 import Data.DepartmentHeadReadWriter;
 import Data.WorkerReadWriter;
-
 import java.io.IOException;
 import java.util.*;
 public class SystemController {
@@ -24,7 +23,7 @@ public class SystemController {
     /**
      * take in the user input from presenter and call corresponding use case method and display the message
      * @param input the input typed by the user
-     * @return the output that the user should see.
+     * @return the key information to form output.
      */
     public ArrayList<String> run(String input) throws IOException {
         String [] split = input.split(" ");// take in input and split them by space
@@ -33,47 +32,56 @@ public class SystemController {
         switch(split[0]){// break into different cases based on the first number of the user's input
             case "1":
                 CreateWorkerCommand createWorker = new CreateWorkerCommand();
-                output = workerExecutor.executeWorkerCommand(createWorker, arguments);
+                output.add("create worker");
+                output.addAll(workerExecutor.executeWorkerCommand(createWorker, arguments));
                 break;
             case "2":
                 CreateHeadCommand createHead = new CreateHeadCommand();
-                output = headExecutor.executeHeadCommand(createHead, arguments);
+                output.add("create head");
+                output.addAll(headExecutor.executeHeadCommand(createHead, arguments));
                 break;
             case "3":
                 ChangeSalaryCommand changeSalary = new ChangeSalaryCommand();
-                output = workerExecutor.executeWorkerCommand(changeSalary, arguments);
+                output.add("change salary");
+                output.addAll(workerExecutor.executeWorkerCommand(changeSalary, arguments));
                 break;
             case "4":
                 ChangeScheduleCommand changeSchedule = new ChangeScheduleCommand();
-                output = workerExecutor.executeWorkerCommand(changeSchedule, arguments);
+                output.add("change schedule");
+                output.addAll(workerExecutor.executeWorkerCommand(changeSchedule, arguments));
                 break;
             case "5":
                 DeleteWorkerCommand deleteWorker = new DeleteWorkerCommand();
-                output = workerExecutor.executeWorkerCommand(deleteWorker, arguments);
+                output.add("delete worker");
+                output.addAll(workerExecutor.executeWorkerCommand(deleteWorker, arguments));
                 break;
             case "6":
                 DeleteHeadCommand deleteHead = new DeleteHeadCommand();
-                output = headExecutor.executeHeadCommand(deleteHead, arguments);
+                output.add("delete head");
+                output.addAll(headExecutor.executeHeadCommand(deleteHead, arguments));
                 break;
             case "7":
                 SearchByNameCommand searchByName = new SearchByNameCommand();
-                output = workerExecutor.executeWorkerCommand(searchByName, arguments);
+                output.add("list");
+                output.addAll(workerExecutor.executeWorkerCommand(searchByName, arguments));
                 break;
             case "8":
                 SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand();
-                output = headExecutor.executeHeadCommand(searchByYear, arguments);
+                output.add("list");
+                output.addAll(headExecutor.executeHeadCommand(searchByYear, arguments));
                 break;
             case "9":
                 AllWorkerCommand allWorker = new AllWorkerCommand();
                 AllHeadCommand allHead = new AllHeadCommand();
-                output = headExecutor.executeHeadCommand(allHead, arguments);
+                output.add("list");
+                output.addAll(headExecutor.executeHeadCommand(allHead, arguments));
                 output.addAll(workerExecutor.executeWorkerCommand(allWorker, arguments));
                 break;
             case "exit":
-                output.add("System exited");
+                output.add("exit");
                 break;
             default:
-                output.add("Incorrect command entered, please try again");
+                output.add("not valid");
                 break;
         }
         return output;

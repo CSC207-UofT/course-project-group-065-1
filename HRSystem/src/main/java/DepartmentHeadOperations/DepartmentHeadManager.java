@@ -1,4 +1,4 @@
-package DepartmentHeadCommands;
+package DepartmentHeadOperations;
 
 import Entities.DepartmentHead;
 import Data.*;
@@ -40,7 +40,7 @@ public class DepartmentHeadManager {
      * @param name the name of the department head
      * @param department the department of the department head
      * @param yearOfExperience the number of years of experience the department head has
-     * @return the message that user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> createDepartmentHead(String name, String department, int yearOfExperience) throws IOException {
         // create a new department head with the constructor and add it to the list of department head
@@ -49,8 +49,8 @@ public class DepartmentHeadManager {
         readWriter.saveToFile("heads.ser", heads);
         // return the message that the user should see
         ArrayList<String> output =  new ArrayList<>();
-        output.add("department head " + name + " with id " + this.nextHeadID + ", department " + department + " and "
-                + yearOfExperience + " years of experience is created");
+        output.add(name + " " + this.nextHeadID + " " + department + " "
+                + yearOfExperience);
         // increment next available ID by 1
         this.nextHeadID += 1;
         return output;
@@ -59,7 +59,7 @@ public class DepartmentHeadManager {
     /**
      * delete a department head given the ID
      * @param headID the department head id that wants to be deleted
-     * @return the message that the user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> deleteHead(int headID) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
@@ -67,56 +67,56 @@ public class DepartmentHeadManager {
             if(head.getID() == headID){// get the department head wanted to be deleted
                 this.heads.remove(head);// remove the department head from the list and return the message
                 readWriter.saveToFile("heads.ser", heads);// write the new list to ser file
-                output.add("department head with id " + headID + " is deleted from the system");
+                output.add("S " + headID);
                 return output;
             }
         }
-        // if no department head found, return message no department head found
-        output.add("no department head found with the given ID");
+        // if no department head found, return symbol for no department head found
+        output.add("N I");
         return output;
     }
 
     /**
-     * return the string representation of list of department head match the given condition
+     * return the information of list of department head match the given condition
      * @param moreOrLess more indicates find department head more than the given experience year and less indicate the opposite
      * @param yearOfExperience the target year of experience that want to look for
-     * @return the string representation of list of department head match the given condition
+     * @return the information needed to form output
      */
     public ArrayList<String> searchByExperienceYear(String moreOrLess, int yearOfExperience){
         ArrayList<String> headWithYear = new ArrayList<>();
         if(moreOrLess.equals("more")){// if the user enter more, then look for department head with more than the given experience year
             for(DepartmentHead head : this.heads){
                 if(head.getYearOfExperience() > yearOfExperience){
-                    headWithYear.add(head.toString());
+                    headWithYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
                 }
             }
-            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return no department head match
-                headWithYear.add("No department head found in the system with year of experience more than " + yearOfExperience);
+            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
+                headWithYear.add("F M " + yearOfExperience);
             }
         }else if(moreOrLess.equals("less")){// if the user enter less, then look for department head with less than the given experience year
             for(DepartmentHead head : this.heads){
                 if(head.getYearOfExperience() < yearOfExperience){
-                    headWithYear.add(head.toString());
+                    headWithYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
                 }
             }
-            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return no department head match
-                headWithYear.add("No department head found in the system with year of experience less than " + yearOfExperience);
+            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
+                headWithYear.add("F L " + yearOfExperience);
             }
         }else{
-            headWithYear.add("Incorrect input, please try again");
+            headWithYear.add("I");
         }
         return headWithYear;
     }
 
     /**
-     * return the string representation of list of all department heads
-     * @return the string representation of list of all department heads
+     * return the information of list of all department heads
+     * @return the information needed to form output
      */
     public ArrayList<String> allHeads(){
         ArrayList<String> out = new ArrayList<>();
         for(DepartmentHead head : this.heads){
-            // convert all department head to string and add it to the output list
-            out.add(head.toString());
+            // convert all department head information to string and add it to the output list
+            out.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
         }
         return out;
     }

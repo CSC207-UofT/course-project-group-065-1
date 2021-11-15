@@ -1,4 +1,4 @@
-package DepartmentHeadCommands;
+package DepartmentHeadOperations;
 
 import Data.DepartmentHeadReadWriter;
 
@@ -19,7 +19,7 @@ public class HeadCommandExecutor {
      * Execute the execute method with the given command object
      * @param operation the command object want to be executed
      * @param arguments arguments needed to execute the method
-     * @return the message that the user should see
+     * @return the information needed to form output
      */
     public ArrayList<String> executeHeadCommand(HeadCommands operation, ArrayList<String> arguments) throws IOException {
         return operation.execute(this.headManager, arguments);

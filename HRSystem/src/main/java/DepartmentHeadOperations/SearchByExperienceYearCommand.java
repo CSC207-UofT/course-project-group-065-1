@@ -1,4 +1,4 @@
-package DepartmentHeadCommands;
+package DepartmentHeadOperations;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ public class SearchByExperienceYearCommand implements HeadCommands {
      * execute the search by experience year command by calling method from the given use case class
      * @param manager the use case class that contains methods to execute the command
      * @param arguments arguments needed to execute the given command
-     * @return message that the user should see
+     * @return the information needed to form output
      */
     @Override
     public ArrayList<String> execute(DepartmentHeadManager manager, ArrayList<String> arguments) throws IOException {
