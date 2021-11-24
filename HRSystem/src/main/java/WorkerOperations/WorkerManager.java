@@ -5,10 +5,12 @@ import Entities.Worker;
 import Data.*;
 import java.io.IOException;
 import java.util.*;
+import Constants.*;
 public class WorkerManager {
     final private ArrayList<Worker> workers;
     private int nextWorkerID;
     ReadWriter readWriter;
+    FileName workerFile = new FileName();
     /**
      * Constructor of WorkerCommands.WorkerManager
      */
@@ -16,7 +18,7 @@ public class WorkerManager {
         // initialize the readWriter to the given readWriter
         this.readWriter = readWriter;
         // initialize the list of workers to list of workers in ser file
-        this.workers = readWriter.readFromFile("workers.ser");
+        this.workers = readWriter.readFromFile(workerFile.workerRunFileName());
         // initialize the next available id to 0 if no workers in ser file or to largest id plus on if there is at least one worker
         this.nextWorkerID = -1;
         if(workers.isEmpty()){
@@ -47,7 +49,7 @@ public class WorkerManager {
         // increase next available id by 1 and return detail of worker to user
         this.nextWorkerID += 1;
         // save the new list of workers to ser file
-        readWriter.saveToFile("workers.ser", workers);
+        readWriter.saveToFile(workerFile.workerRunFileName(), workers);
         //return the information
         ArrayList<String> output =  new ArrayList<>();
         output.add(name + " " + (this.nextWorkerID - 1) + " " + salary + " " + department);
@@ -66,7 +68,7 @@ public class WorkerManager {
            if(worker.getID() == workerID){// find the worker with the id and change their salary
                worker.setSalary(worker.getSalary() + worker.getSalary()*changePercent);
                // save the new list to ser file
-               readWriter.saveToFile("workers.ser", workers);
+               readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                output.add("S " + worker.getName() + " " + worker.getID() + " " + worker.getSalary());
                return output;
            }
@@ -90,7 +92,7 @@ public class WorkerManager {
             if(worker.getID() == workerID){// find the worker with the id and change their schedule
                 worker.setSchedule(dayOfWeek, startTime, endTime);
                 // save the new list to ser file
-                readWriter.saveToFile("workers.ser", workers);
+                readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                 output.add("S " + worker.getName() + " " + worker.getID() + " " +
                         worker.getDepartment() + " " + worker.getSchedule().toString());
                 return output;
@@ -112,7 +114,7 @@ public class WorkerManager {
             if(worker.getID() == workerID){// find the worker and remove it from the list
                 this.workers.remove(worker);
                 // store the new list to ser file
-                readWriter.saveToFile("workers.ser", workers);
+                readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                 output.add("S " + workerID);
                 return output;
             }
@@ -135,7 +137,7 @@ public class WorkerManager {
             }
         }
         if(workerWithName.isEmpty()){// no worker with the given name, then return no worker found symbol
-            workerWithName.add("F");
+            workerWithName.add("f");
         }
         return workerWithName;
     }

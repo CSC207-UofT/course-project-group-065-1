@@ -4,13 +4,13 @@ import Entities.DepartmentHead;
 import Data.*;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import Constants.*;
 public class DepartmentHeadManager {
 
     final private ArrayList<DepartmentHead> heads;
     private int nextHeadID;
     ReadWriter readWriter;
-
+    FileName headFile = new FileName();
     /**
      * Constructor of DepartmentHeadManager
      * @param readWriter the readWriter that is used to read and write list of department heads to the ser file
@@ -19,7 +19,7 @@ public class DepartmentHeadManager {
         // initialize the readWrite to the given readWriter
         this.readWriter = readWriter;
         // store the list of department heads from the ser file to the list of all department heads
-        this.heads = readWriter.readFromFile("heads.ser");
+        this.heads = readWriter.readFromFile(headFile.headRunFileName());
         // the next department head id is either initialize to 0 if there is no record in the file
         // or to the largest department head ID in the ser file plus 1
         this.nextHeadID = -1;
@@ -46,7 +46,7 @@ public class DepartmentHeadManager {
         // create a new department head with the constructor and add it to the list of department head
         this.heads.add(new DepartmentHead(name, this.nextHeadID, department, yearOfExperience));
         // write the new list of department heads to the ser file
-        readWriter.saveToFile("heads.ser", heads);
+        readWriter.saveToFile(headFile.headRunFileName(), heads);
         // return the message that the user should see
         ArrayList<String> output =  new ArrayList<>();
         output.add(name + " " + this.nextHeadID + " " + department + " "
@@ -66,7 +66,7 @@ public class DepartmentHeadManager {
         for(DepartmentHead head : this.heads){
             if(head.getID() == headID){// get the department head wanted to be deleted
                 this.heads.remove(head);// remove the department head from the list and return the message
-                readWriter.saveToFile("heads.ser", heads);// write the new list to ser file
+                readWriter.saveToFile(headFile.headRunFileName(), heads);// write the new list to ser file
                 output.add("S " + headID);
                 return output;
             }
@@ -91,7 +91,7 @@ public class DepartmentHeadManager {
                 }
             }
             if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
-                headWithYear.add("F M " + yearOfExperience);
+                headWithYear.add("F");
             }
         }else if(moreOrLess.equals("less")){// if the user enter less, then look for department head with less than the given experience year
             for(DepartmentHead head : this.heads){
@@ -100,7 +100,7 @@ public class DepartmentHeadManager {
                 }
             }
             if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
-                headWithYear.add("F L " + yearOfExperience);
+                headWithYear.add("F");
             }
         }else{
             headWithYear.add("I");
