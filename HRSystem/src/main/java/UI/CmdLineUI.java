@@ -91,7 +91,7 @@ public class CmdLineUI {
                 System.out.println(m.getExitMessage());
                 break;
             case "list":
-                if(info.size() == 1){
+                if(info.size() == 1 && info.get(0).split(" ").length == 1){
                     if(info.get(0).equals("f")){
                         System.out.println(m.getNoWorkerNameMessage());
                     }else if(info.get(0).equals("I")) {

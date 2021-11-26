@@ -18,10 +18,9 @@ public class WorkerCommandExecutor {
     /**
      * execute the given command
      * @param operation the command object that needs to be executed
-     * @param arguments the arguments needed to execute the given command
      * @return the information needed to form output
      */
-    public ArrayList<String> executeWorkerCommand(WorkerCommands operation, ArrayList<String> arguments) throws IOException {
-        return operation.execute(this.workerManager, arguments);
+    public ArrayList<String> executeWorkerCommand(WorkerCommands operation) throws IOException {
+        return operation.execute(this.workerManager);
     }
 }
