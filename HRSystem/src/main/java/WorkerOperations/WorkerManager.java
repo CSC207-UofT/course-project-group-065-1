@@ -5,10 +5,12 @@ import Entities.Worker;
 import Data.*;
 import java.io.IOException;
 import java.util.*;
+import Constants.*;
 public class WorkerManager {
     final private ArrayList<Worker> workers;
     private int nextWorkerID;
     ReadWriter readWriter;
+    FileName workerFile = new FileName();
     /**
      * Constructor of WorkerCommands.WorkerManager
      */
@@ -16,7 +18,7 @@ public class WorkerManager {
         // initialize the readWriter to the given readWriter
         this.readWriter = readWriter;
         // initialize the list of workers to list of workers in ser file
-        this.workers = readWriter.readFromFile("workers.ser");
+        this.workers = readWriter.readFromFile(workerFile.workerRunFileName());
         // initialize the next available id to 0 if no workers in ser file or to largest id plus on if there is at least one worker
         this.nextWorkerID = -1;
         if(workers.isEmpty()){
@@ -33,24 +35,19 @@ public class WorkerManager {
 
     /**
      * create the worker if the input are valid
-     * @param name the name of the worker that want to create
-     * @param salary the salary of the worker that want to create
-     * @param department the department of the worker that want to create
-     * @param dayOfWeek the day of the week of the worker's schedule
-     * @param startTime the start time of the worker's schedule
-     * @param endTime the end time of the worker's schedule
+     * @param arguments list of arguments needed
      * @return the information needed to form output
      */
-    public ArrayList<String> createWorker(String name, int salary, String department, String dayOfWeek, String startTime, String endTime) throws IOException {
+    public ArrayList<String> createWorker(ArrayList<String> arguments) throws IOException {
         // create a new worker with given information and add it to the list of worker
-        this.workers.add(new Worker(name, salary, this.nextWorkerID, department, new Schedule(dayOfWeek, startTime, endTime)));
+        this.workers.add(new Worker(arguments.get(0), Integer.parseInt(arguments.get(1)), this.nextWorkerID, arguments.get(2), new Schedule(arguments.get(3), arguments.get(4), arguments.get(5))));
         // increase next available id by 1 and return detail of worker to user
         this.nextWorkerID += 1;
         // save the new list of workers to ser file
-        readWriter.saveToFile("workers.ser", workers);
+        readWriter.saveToFile(workerFile.workerRunFileName(), workers);
         //return the information
         ArrayList<String> output =  new ArrayList<>();
-        output.add(name + " " + (this.nextWorkerID - 1) + " " + salary + " " + department);
+        output.add(arguments.get(0) + " " + (this.nextWorkerID - 1) + " " + Integer.parseInt(arguments.get(1)) + " " + arguments.get(2));
         return output;
     }
 
@@ -66,7 +63,7 @@ public class WorkerManager {
            if(worker.getID() == workerID){// find the worker with the id and change their salary
                worker.setSalary(worker.getSalary() + worker.getSalary()*changePercent);
                // save the new list to ser file
-               readWriter.saveToFile("workers.ser", workers);
+               readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                output.add("S " + worker.getName() + " " + worker.getID() + " " + worker.getSalary());
                return output;
            }
@@ -78,19 +75,16 @@ public class WorkerManager {
 
     /**
      * change the schedule of the given worker
-     * @param workerID the ID of the worker
-     * @param dayOfWeek the day of the week that the schedule should change to
-     * @param startTime the start time that the schedule should change to
-     * @param endTime the end time that the schedule should change to
+     * @param arguments list of arguments needed
      * @return the information needed to form output
      */
-    public ArrayList<String> changeSchedule(int workerID, String dayOfWeek, String startTime, String endTime) throws IOException {
+    public ArrayList<String> changeSchedule(ArrayList<String> arguments) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
         for(Worker worker : this.workers){
-            if(worker.getID() == workerID){// find the worker with the id and change their schedule
-                worker.setSchedule(dayOfWeek, startTime, endTime);
+            if(worker.getID() == Integer.parseInt(arguments.get(0))){// find the worker with the id and change their schedule
+                worker.setSchedule(arguments.get(1), arguments.get(2), arguments.get(3));
                 // save the new list to ser file
-                readWriter.saveToFile("workers.ser", workers);
+                readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                 output.add("S " + worker.getName() + " " + worker.getID() + " " +
                         worker.getDepartment() + " " + worker.getSchedule().toString());
                 return output;
@@ -112,7 +106,7 @@ public class WorkerManager {
             if(worker.getID() == workerID){// find the worker and remove it from the list
                 this.workers.remove(worker);
                 // store the new list to ser file
-                readWriter.saveToFile("workers.ser", workers);
+                readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                 output.add("S " + workerID);
                 return output;
             }
@@ -135,7 +129,7 @@ public class WorkerManager {
             }
         }
         if(workerWithName.isEmpty()){// no worker with the given name, then return no worker found symbol
-            workerWithName.add("F");
+            workerWithName.add("f");
         }
         return workerWithName;
     }

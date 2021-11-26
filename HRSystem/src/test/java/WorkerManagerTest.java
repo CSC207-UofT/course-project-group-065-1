@@ -22,7 +22,8 @@ public class WorkerManagerTest {
     public void testCreateWorker() throws IOException, ClassNotFoundException {
         WorkerReadWriter readWriter = new WorkerReadWriter();
         manager = new WorkerManager(readWriter);
-        String output = manager.createWorker("Bob", 2000, "bakery", "Monday", "9AM", "4PM").get(0);
+        ArrayList<String> arguments = new ArrayList<>(List.of("Bob", "2000", "bakery", "Monday", "9AM", "4PM"));
+        String output = manager.createWorker(arguments).get(0);
         String expected = "Bob 0 2000 bakery";
         Assertions.assertEquals(expected, output);
     }
@@ -40,7 +41,8 @@ public class WorkerManagerTest {
     public void testChangeSchedule() throws IOException, ClassNotFoundException {
         WorkerReadWriter readWriter = new WorkerReadWriter();
         manager = new WorkerManager(readWriter);
-        String output = manager.changeSchedule(1, "Tuesday", "11AM", "9PM").get(0);
+        ArrayList<String> arguments = new ArrayList<>(List.of("1", "Tuesday", "11AM", "9PM"));
+        String output = manager.changeSchedule(arguments).get(0);
         String expected = "S Bob 1 bakery Tuesday from 11AM to 9PM";
         Assertions.assertEquals(expected, output);
     }
@@ -58,7 +60,8 @@ public class WorkerManagerTest {
     public void testSearchByName() throws IOException, ClassNotFoundException {
         WorkerReadWriter readWriter = new WorkerReadWriter();
         manager = new WorkerManager(readWriter);
-        manager.createWorker("Bob", 3000, "clothes", "Friday", "1AM", "10PM");
+        ArrayList<String> arguments = new ArrayList<>(List.of("Bob", "3000", "clothes", "Friday", "1AM", "10PM"));
+        manager.createWorker(arguments);
         ArrayList<String> output = manager.searchByName("Bob");
         ArrayList<String> expected = new ArrayList<>();
         expected.add("Bob 1 bakery 1900.0 Monday from 9AM to 4PM");
@@ -70,8 +73,10 @@ public class WorkerManagerTest {
     public void testAllWorker() throws IOException, ClassNotFoundException {
         WorkerReadWriter readWriter = new WorkerReadWriter();
         manager = new WorkerManager(readWriter);
-        manager.createWorker("Bob", 1900, "bakery", "Monday", "9AM", "4PM");
-        manager.createWorker("Victor", 3000, "clothes", "Friday", "1AM", "10PM");
+        ArrayList<String> arguments1 = new ArrayList<>(List.of("Bob", "1900", "bakery", "Monday", "9AM", "4PM"));
+        manager.createWorker(arguments1);
+        ArrayList<String> arguments2 = new ArrayList<>(List.of("Victor", "3000", "clothes", "Friday", "1AM", "10PM"));
+        manager.createWorker(arguments2);
         ArrayList<String> output = manager.allWorker();
         ArrayList<String> expected = new ArrayList<>();
         expected.add("Bob 0 bakery 2000.0 Monday from 9AM to 4PM");
