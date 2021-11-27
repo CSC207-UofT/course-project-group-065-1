@@ -4,6 +4,7 @@ import DepartmentHeadOperations.*;
 import Data.DepartmentHeadReadWriter;
 import java.io.IOException;
 import java.util.*;
+import Helper.*;
 public class DepartmentHeadController {
 
 
@@ -23,24 +24,37 @@ public class DepartmentHeadController {
      * @return the key information to form output.
      */
     public ArrayList<String> run(String input) throws IOException {
+        Helper help = new Helper();
         String [] split = input.split(" ");// take in input and split them by space
         ArrayList<String> arguments = new ArrayList<>(Arrays.asList(split).subList(1, split.length));
         ArrayList<String> output = new ArrayList<>();
         switch(split[0]){// break into different cases based on the first number of the user's input
             case "2":
-                CreateHeadCommand createHead = new CreateHeadCommand(arguments);
-                output.add("create head");
-                output.addAll(headExecutor.executeHeadCommand(createHead));
+                if(help.checkInt(arguments.get(2))) {
+                    CreateHeadCommand createHead = new CreateHeadCommand(arguments);
+                    output.add("create head");
+                    output.addAll(headExecutor.executeHeadCommand(createHead));
+                }else{
+                    output.add("invalid");
+                }
                 break;
             case "6":
-                DeleteHeadCommand deleteHead = new DeleteHeadCommand(arguments);
-                output.add("delete head");
-                output.addAll(headExecutor.executeHeadCommand(deleteHead));
+                if(help.checkInt(arguments.get(0))) {
+                    DeleteHeadCommand deleteHead = new DeleteHeadCommand(arguments);
+                    output.add("delete head");
+                    output.addAll(headExecutor.executeHeadCommand(deleteHead));
+                }else{
+                    output.add("invalid");
+                }
                 break;
             case "8":
-                SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand(arguments);
-                output.add("list");
-                output.addAll(headExecutor.executeHeadCommand(searchByYear));
+                if(help.checkInt(arguments.get(1))) {
+                    SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand(arguments);
+                    output.add("list");
+                    output.addAll(headExecutor.executeHeadCommand(searchByYear));
+                }else{
+                    output.add("invalid");
+                }
                 break;
             case "9":
                 AllHeadCommand allHead = new AllHeadCommand();
