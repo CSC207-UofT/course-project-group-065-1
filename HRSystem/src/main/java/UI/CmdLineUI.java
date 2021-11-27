@@ -42,10 +42,6 @@ public class CmdLineUI {
                 output = workerController.run(input);
                 worker.display(output.remove(0), output);
             }
-
-            // produce the message that the user should see
-
-            // display the output
         }while(!input.equals("exit"));
         System.out.println(m.getThanksMessage());
     }
