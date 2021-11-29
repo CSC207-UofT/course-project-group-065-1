@@ -4,7 +4,7 @@ import Constants.Message;
 
 import java.util.ArrayList;
 
-public class DepartmentHeadPresenter {
+public class DepartmentHeadOutputHandler {
 
     public void display(String operations, ArrayList<String> info){
         Message m = new Message();

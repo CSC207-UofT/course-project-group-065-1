@@ -4,8 +4,7 @@ import DepartmentHeadOperations.*;
 import Data.DepartmentHeadReadWriter;
 import java.io.IOException;
 import java.util.*;
-import Helper.*;
-public class DepartmentHeadController {
+public class DepartmentHeadInputHandler {
 
 
     HeadCommandExecutor headExecutor;
@@ -14,7 +13,7 @@ public class DepartmentHeadController {
     /**
      * Constructor of the controller
      */
-    public DepartmentHeadController() throws IOException, ClassNotFoundException {
+    public DepartmentHeadInputHandler() throws IOException, ClassNotFoundException {
         this.headExecutor = new HeadCommandExecutor(new DepartmentHeadReadWriter());
     }
 
@@ -24,13 +23,12 @@ public class DepartmentHeadController {
      * @return the key information to form output.
      */
     public ArrayList<String> run(String input) throws IOException {
-        Helper help = new Helper();
         String [] split = input.split(" ");// take in input and split them by space
         ArrayList<String> arguments = new ArrayList<>(Arrays.asList(split).subList(1, split.length));
         ArrayList<String> output = new ArrayList<>();
         switch(split[0]){// break into different cases based on the first number of the user's input
             case "2":
-                if(help.checkInt(arguments.get(2))) {
+                if(checkInt(arguments.get(2))) {
                     CreateHeadCommand createHead = new CreateHeadCommand(arguments);
                     output.add("create head");
                     output.addAll(headExecutor.executeHeadCommand(createHead));
@@ -39,7 +37,7 @@ public class DepartmentHeadController {
                 }
                 break;
             case "6":
-                if(help.checkInt(arguments.get(0))) {
+                if(checkInt(arguments.get(0))) {
                     DeleteHeadCommand deleteHead = new DeleteHeadCommand(arguments);
                     output.add("delete head");
                     output.addAll(headExecutor.executeHeadCommand(deleteHead));
@@ -48,7 +46,7 @@ public class DepartmentHeadController {
                 }
                 break;
             case "8":
-                if(help.checkInt(arguments.get(1))) {
+                if(checkInt(arguments.get(1))) {
                     SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand(arguments);
                     output.add("list");
                     output.addAll(headExecutor.executeHeadCommand(searchByYear));
@@ -69,5 +67,14 @@ public class DepartmentHeadController {
                 break;
         }
         return output;
+    }
+
+    private boolean checkInt(String input){
+        try{
+            Integer.parseInt(input);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
     }
 }

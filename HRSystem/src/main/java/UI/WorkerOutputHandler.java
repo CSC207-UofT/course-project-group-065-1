@@ -4,7 +4,7 @@ import Constants.Message;
 
 import java.util.ArrayList;
 
-public class WorkerPresenter {
+public class WorkerOutputHandler {
     public void display(String operations, ArrayList<String> info){
         Message m = new Message();
         ArrayList<String> messages;
