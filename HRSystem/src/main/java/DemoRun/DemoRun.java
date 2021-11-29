@@ -7,10 +7,7 @@ package DemoRun;
  import Data.WorkerReadWriter;
 */
 
-import UI.CmdLineUI;
-import UI.DepartmentHeadPresenter;
-import UI.OptionMenuPresenter;
-import UI.WorkerPresenter;
+import UI.*;
 
 import java.io.IOException;
 
@@ -34,10 +31,12 @@ public class DemoRun {
         */
 
         // demo run of the HR System by define a new web.CmdLineUI instance and run the user interface
-        WorkerPresenter worker = new WorkerPresenter();
-        DepartmentHeadPresenter head = new DepartmentHeadPresenter();
+        WorkerOutputHandler worker = new WorkerOutputHandler();
+        DepartmentHeadOutputHandler head = new DepartmentHeadOutputHandler();
         OptionMenuPresenter menu = new OptionMenuPresenter();
-        CmdLineUI ui = new CmdLineUI(menu, worker, head);
+        DepartmentHeadInputHandler headInputHandler = new DepartmentHeadInputHandler();
+        WorkerInputHandler workerInputHandler = new WorkerInputHandler();
+        CmdLineUI ui = new CmdLineUI(menu, worker, head, headInputHandler, workerInputHandler);
         ui.run();
     }
 }
