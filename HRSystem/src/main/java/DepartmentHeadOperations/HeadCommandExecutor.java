@@ -12,7 +12,7 @@ public class HeadCommandExecutor {
      * @param readWriter the readWriter used to read and write to ser file
      */
     public HeadCommandExecutor(DepartmentHeadReadWriter readWriter) throws IOException, ClassNotFoundException {
-        this.headManager = new DepartmentHeadManager(readWriter);
+        this.headManager = new DepartmentHeadManager(readWriter, false);
     }
 
     /**

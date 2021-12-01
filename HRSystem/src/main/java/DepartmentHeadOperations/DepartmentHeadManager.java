@@ -15,11 +15,12 @@ public class DepartmentHeadManager {
      * Constructor of DepartmentHeadManager
      * @param readWriter the readWriter that is used to read and write list of department heads to the ser file
      */
-    public DepartmentHeadManager(DepartmentHeadReadWriter readWriter) throws IOException, ClassNotFoundException {
+    public DepartmentHeadManager(DepartmentHeadReadWriter readWriter, boolean test) throws IOException, ClassNotFoundException {
         // initialize the readWrite to the given readWriter
         this.readWriter = readWriter;
         // store the list of department heads from the ser file to the list of all department heads
-        this.heads = readWriter.readFromFile(headFile.headRunFileName());
+        if(test){this.heads = readWriter.readFromFile(headFile.headTestFileName());}
+        else{this.heads = readWriter.readFromFile(headFile.headRunFileName());}
         // the next department head id is either initialize to 0 if there is no record in the file
         // or to the largest department head ID in the ser file plus 1
         this.nextHeadID = -1;
@@ -42,11 +43,12 @@ public class DepartmentHeadManager {
      * @param yearOfExperience the number of years of experience the department head has
      * @return the information needed to form output
      */
-    public ArrayList<String> createDepartmentHead(String name, String department, int yearOfExperience) throws IOException {
+    public ArrayList<String> createDepartmentHead(String name, String department, int yearOfExperience, boolean test) throws IOException {
         // create a new department head with the constructor and add it to the list of department head
         this.heads.add(new DepartmentHead(name, this.nextHeadID, department, yearOfExperience));
         // write the new list of department heads to the ser file
-        readWriter.saveToFile(headFile.headRunFileName(), heads);
+        if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
+        else{readWriter.saveToFile(headFile.headRunFileName(), heads);}
         // return the message that the user should see
         ArrayList<String> output =  new ArrayList<>();
         output.add(name + " " + this.nextHeadID + " " + department + " "
@@ -61,13 +63,14 @@ public class DepartmentHeadManager {
      * @param headID the department head id that wants to be deleted
      * @return the information needed to form output
      */
-    public ArrayList<String> deleteHead(int headID) throws IOException {
+    public ArrayList<String> deleteHead(int headID, boolean test) throws IOException {
         ArrayList<String> output =  new ArrayList<>();
         for(DepartmentHead head : this.heads){
             if(head.getID() == headID){// get the department head wanted to be deleted
                 this.heads.remove(head);// remove the department head from the list and return the message
-                readWriter.saveToFile(headFile.headRunFileName(), heads);// write the new list to ser file
-                output.add("S " + headID);
+                if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
+                else{readWriter.saveToFile(headFile.headRunFileName(), heads);}// write the new list to ser file
+                output.add("S " + head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
                 return output;
             }
         }
@@ -118,6 +121,29 @@ public class DepartmentHeadManager {
             // convert all department head information to string and add it to the output list
             out.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
         }
+        return out;
+    }
+
+    public void deleteAllHead(boolean test) throws IOException {
+        if(test){readWriter.saveToFile(headFile.headTestFileName(), new ArrayList<>());}
+        else{readWriter.saveToFile(headFile.headRunFileName(), new ArrayList<>());}
+    }
+
+    public ArrayList<String> undoCreateDepartmentHead(boolean test) throws IOException {
+        ArrayList<String> output = this.deleteHead((this.nextHeadID - 1), test);
+        if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
+        else{readWriter.saveToFile(headFile.headRunFileName(), heads);}
+        this.nextHeadID -= 1;
+        return output;
+    }
+
+    public ArrayList<String> undoDeleteHead(String name, int headID, String department, int yearOfExperience,  boolean test) throws IOException {
+        DepartmentHead head = new DepartmentHead(name, headID, department, yearOfExperience);
+        this.heads.add(head);
+        if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
+        else{readWriter.saveToFile(headFile.headRunFileName(), heads);}
+        ArrayList<String> out = new ArrayList<>();
+        out.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
         return out;
     }
 }

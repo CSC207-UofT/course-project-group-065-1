@@ -16,6 +16,6 @@ public class ChangeScheduleCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.changeSchedule(this.arguments);
+        return manager.changeSchedule(this.arguments,false);
     }
 }

@@ -16,6 +16,6 @@ public class DeleteWorkerCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.deleteWorker(Integer.parseInt(this.arguments.get(0)));
+        return manager.deleteWorker(Integer.parseInt(this.arguments.get(0)),false);
     }
 }

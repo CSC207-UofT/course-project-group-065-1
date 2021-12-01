@@ -2,10 +2,11 @@ package DemoRun;
 
 /*
  These imports are used to initialize 2 new ser files so uncomment them only when creating the 2 new ser files
+*/
  import Data.DepartmentHeadReadWriter;
  import java.util.*;
  import Data.WorkerReadWriter;
-*/
+
 
 import UI.*;
 
@@ -19,13 +20,13 @@ public class DemoRun {
         and uncomment the following code and run it for once
         This will create an empty new ser files and then comment the following code and run the
         command line interface.
-        */
 
-        /*
+
+
         DepartmentHeadReadWriter headReadWriter = new DepartmentHeadReadWriter();
         WorkerReadWriter workerReadWriter = new WorkerReadWriter();
-        headReadWriter.saveToFile("heads.ser", new ArrayList<>());
-        workerReadWriter.saveToFile("workers.ser", new ArrayList<>());
+        headReadWriter.saveToFile("headstest.ser", new ArrayList<>());
+        workerReadWriter.saveToFile("workerstest.ser", new ArrayList<>());
         System.out.println(headReadWriter.readFromFile("heads.ser"));
         System.out.println(workerReadWriter.readFromFile("workers.ser"));
         */
@@ -38,5 +39,6 @@ public class DemoRun {
         WorkerInputHandler workerInputHandler = new WorkerInputHandler();
         CmdLineUI ui = new CmdLineUI(menu, worker, head, headInputHandler, workerInputHandler);
         ui.run();
+
     }
 }

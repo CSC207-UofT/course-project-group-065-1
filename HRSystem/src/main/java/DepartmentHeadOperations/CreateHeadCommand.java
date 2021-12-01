@@ -17,6 +17,6 @@ public class CreateHeadCommand implements HeadCommands {
      */
     @Override
     public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
-        return manager.createDepartmentHead(this.arguments.get(0), this.arguments.get(1), Integer.parseInt(this.arguments.get(2)));
+        return manager.createDepartmentHead(this.arguments.get(0), this.arguments.get(1), Integer.parseInt(this.arguments.get(2)), false);
     }
 }
