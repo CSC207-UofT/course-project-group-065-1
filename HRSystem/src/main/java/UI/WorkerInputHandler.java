@@ -29,7 +29,7 @@ public class WorkerInputHandler {
         ArrayList<String> output = new ArrayList<>();
         switch(split[0]){// break into different cases based on the first number of the user's input
             case "1":
-                if(checkInt(arguments.get(1))) {
+                if(checkDouble(arguments.get(1))) {
                     CreateWorkerCommand createWorker = new CreateWorkerCommand(arguments);
                     output.add("create worker");
                     output.addAll(workerExecutor.executeWorkerCommand(createWorker));
@@ -73,6 +73,11 @@ public class WorkerInputHandler {
                 AllWorkerCommand allWorker = new AllWorkerCommand();
                 output.add("list");
                 output.addAll(workerExecutor.executeWorkerCommand(allWorker));
+                break;
+            case "10":
+                WorkerCommands command = workerExecutor.previousCommand();
+                output.add("undo");
+                output.addAll(workerExecutor.undoWorkerCommand(command));
                 break;
             case "exit":
                 output.add("exit");

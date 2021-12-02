@@ -59,6 +59,11 @@ public class DepartmentHeadInputHandler {
                 output.add("list");
                 output.addAll(headExecutor.executeHeadCommand(allHead));
                 break;
+            case "11":
+                HeadCommands command = headExecutor.previousCommand();
+                output.add("undo");
+                output.addAll(headExecutor.undoHeadCommand(command));
+                break;
             case "exit":
                 output.add("exit");
                 break;

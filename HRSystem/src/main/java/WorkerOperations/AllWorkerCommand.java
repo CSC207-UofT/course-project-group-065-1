@@ -13,4 +13,11 @@ public class AllWorkerCommand implements WorkerCommands {
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
         return manager.allWorker();
     }
+
+    @Override
+    public ArrayList<String> undo(WorkerManager manager){
+        ArrayList<String> output = new ArrayList<>();
+        output.add("NU");
+        return output;
+    }
 }

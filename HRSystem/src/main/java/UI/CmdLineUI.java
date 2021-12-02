@@ -32,7 +32,7 @@ public class CmdLineUI {
             input = in.nextLine();
             String op = input.split(" ")[0];
             ArrayList<String> output;
-            if (op.equals("2") || op.equals("6") || op.equals("8")){
+            if (op.equals("2") || op.equals("6") || op.equals("8") || op.equals("11")){
                 output = headInputHandler.run(input);
                 headOutputHandler.display(output.remove(0), output);
             } else if (op.equals("9")) {

@@ -34,7 +34,7 @@ public class DepartmentHeadManagerTest {
         DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
         manager = new DepartmentHeadManager(readWriter, true);
         manager.createDepartmentHead("Bob", "bakery", 10, true);
-        String output = manager.deleteHead(0, true).get(0);
+        String output = manager.deleteHead(0, true).get(1);
         String expected = "S Bob 0 bakery 10";
         manager.deleteAllHead(true);
         Assertions.assertEquals(expected, output);

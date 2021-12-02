@@ -1,6 +1,5 @@
 package WorkerOperations;
 
-import Entities.DepartmentHead;
 import Entities.Schedule;
 import Entities.Worker;
 import Data.*;
@@ -42,7 +41,7 @@ public class WorkerManager {
      */
     public ArrayList<String> createWorker(ArrayList<String> arguments, boolean test) throws IOException {
         // create a new worker with given information and add it to the list of worker
-        this.workers.add(new Worker(arguments.get(0), Integer.parseInt(arguments.get(1)), this.nextWorkerID, arguments.get(2), new Schedule(arguments.get(3), arguments.get(4), arguments.get(5))));
+        this.workers.add(new Worker(arguments.get(0), Double.parseDouble(arguments.get(1)), this.nextWorkerID, arguments.get(2), new Schedule(arguments.get(3), arguments.get(4), arguments.get(5))));
         // increase next available id by 1 and return detail of worker to user
         this.nextWorkerID += 1;
         // save the new list of workers to ser file
@@ -64,6 +63,7 @@ public class WorkerManager {
         ArrayList<String> output =  new ArrayList<>();
        for(Worker worker : this.workers){
            if(worker.getID() == workerID){// find the worker with the id and change their salary
+               output.add(Double.toString(worker.getSalary()));
                worker.setSalary(worker.getSalary() + worker.getSalary()*changePercent);
                // save the new list to ser file
                if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
@@ -86,6 +86,7 @@ public class WorkerManager {
         ArrayList<String> output =  new ArrayList<>();
         for(Worker worker : this.workers){
             if(worker.getID() == Integer.parseInt(arguments.get(0))){// find the worker with the id and change their schedule
+                output.add(worker.getSchedule().toString());
                 worker.setSchedule(arguments.get(1), arguments.get(2), arguments.get(3));
                 // save the new list to ser file
                 if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
@@ -109,6 +110,7 @@ public class WorkerManager {
         ArrayList<String> output =  new ArrayList<>();
         for(Worker worker : this.workers){
             if(worker.getID() == workerID){// find the worker and remove it from the list
+                output.add(worker.getName() + " " + worker.getSalary() + " " + worker.getID() + " " + worker.getDepartment() + " " + worker.getSchedule());
                 this.workers.remove(worker);
                 // store the new list to ser file
                 if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
@@ -157,40 +159,31 @@ public class WorkerManager {
         else{readWriter.saveToFile(workerFile.workerRunFileName(), new ArrayList<>());}
     }
 
-    public ArrayList<String> undoCreateWorker(boolean test) throws IOException {
-        ArrayList<String> output = this.deleteWorker((this.nextWorkerID - 1), test);
-        if(test){readWriter.saveToFile(workerFile.headTestFileName(), workers);}
-        else{readWriter.saveToFile(workerFile.headRunFileName(), workers);}
+    public void undoCreateWorker(boolean test) throws IOException {
+        this.deleteWorker((this.nextWorkerID - 1), test);
+        if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
+        else{readWriter.saveToFile(workerFile.workerRunFileName(), workers);}
         this.nextWorkerID -= 1;
-        return output;
     }
 
-    public ArrayList<String> undoDeleteWorker(String name, int salary, int ID, String department, Schedule schedule, boolean test) throws IOException {
-        Worker worker = new Worker(name, salary, ID, department, schedule);
-        this.workers.add(worker);
-        if(test){readWriter.saveToFile(workerFile.headTestFileName(), workers);}
-        else{readWriter.saveToFile(workerFile.headRunFileName(), workers);}
-        ArrayList<String> output = new ArrayList<>();
-        output.add(worker.getName() + " " + worker.getID() + " " + worker.getDepartment() + " " + worker.getSalary() + " " + worker.getSchedule().toString());
-        return output;
+    public void undoDeleteWorker(ArrayList<String> arguments, boolean test) throws IOException {
+        Worker worker = new Worker(arguments.get(0), Double.parseDouble(arguments.get(1)), Integer.parseInt(arguments.get(2)), arguments.get(3), new Schedule(arguments.get(4), arguments.get(5), arguments.get(6)));
+        this.workers.add(Integer.parseInt(arguments.get(2)), worker);
+        if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
+        else{readWriter.saveToFile(workerFile.workerRunFileName(), workers);}
     }
 
-    public ArrayList<String> undoChangeSalary(int workerID,  double changePercent, boolean test) throws IOException {
-        ArrayList<String> output = new ArrayList<>();
+    public void undoChangeSalary(int workerID,  double salary, boolean test) throws IOException {
         for (Worker worker : this.workers) {
             if (worker.getID() == workerID) {
-                worker.setSalary(worker.getSalary() + worker.getSalary() / changePercent);
+                worker.setSalary(salary);
                 if (test) {
                     readWriter.saveToFile(workerFile.workerTestFileName(), workers);
                 } else {
                     readWriter.saveToFile(workerFile.workerRunFileName(), workers);
                 }
-                output.add("S " + worker.getName() + " " + worker.getID() + " " + worker.getSalary());
-                return output;
             }
         }
-        output.add("N I");
-        return output;
     }
 }
 

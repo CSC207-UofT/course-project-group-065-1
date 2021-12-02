@@ -1,5 +1,6 @@
 package DepartmentHeadOperations;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,5 +19,13 @@ public class CreateHeadCommand implements HeadCommands {
     @Override
     public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
         return manager.createDepartmentHead(this.arguments.get(0), this.arguments.get(1), Integer.parseInt(this.arguments.get(2)), false);
+    }
+
+    @Override
+    public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
+        manager.undoCreateDepartmentHead(false);
+        ArrayList<String> output = new ArrayList<>();
+        output.add("U");
+        return output;
     }
 }

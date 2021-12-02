@@ -16,7 +16,7 @@ public class Worker extends Employees implements Serializable {
      * @param schedule the schedule of the worker
      */
 
-    public Worker(String name, int salary, int ID, String department, Schedule schedule){
+    public Worker(String name, double salary, int ID, String department, Schedule schedule){
         super(name, ID, department);
         this.salary = salary;
         this.schedule = schedule;

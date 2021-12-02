@@ -46,7 +46,7 @@ public class WorkerManagerTest {
         ArrayList<String> WorkerArguments = new ArrayList<>(List.of("Bob", "2000", "bakery", "Monday", "9AM", "4PM"));
         manager.createWorker(WorkerArguments, true);
         ArrayList<String> arguments = new ArrayList<>(List.of("0", "Tuesday", "11AM", "9PM"));
-        String output = manager.changeSchedule(arguments, true).get(0);
+        String output = manager.changeSchedule(arguments, true).get(1);
         String expected = "S Bob 0 bakery Tuesday from 11AM to 9PM";
         manager.deleteAllWorker(true);
         Assertions.assertEquals(expected, output);
@@ -58,7 +58,7 @@ public class WorkerManagerTest {
         manager = new WorkerManager(readWriter, true);
         ArrayList<String> arguments = new ArrayList<>(List.of("Bob", "2000", "bakery", "Monday", "9AM", "4PM"));
         manager.createWorker(arguments, true);
-        String output = manager.deleteWorker(0, true).get(0);
+        String output = manager.deleteWorker(0, true).get(1);
         String expected = "S Bob 0 bakery 2000.0 Monday from 9AM to 4PM";
         manager.deleteAllWorker(true);
         Assertions.assertEquals(expected, output);
