@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChangeSalaryCommand implements WorkerCommands {
-    final private ArrayList<String> arguments;
+    private ArrayList<String> arguments;
 
     public ChangeSalaryCommand(ArrayList<String> arguments){
         this.arguments = arguments;
@@ -16,6 +16,26 @@ public class ChangeSalaryCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.changeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
+        ArrayList<String> out = manager.changeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
+        if(out.get(0).equals("N I")){
+            this.arguments = out;
+        }else{
+            this.arguments.remove(1);
+            this.arguments.add(out.remove(0));
+        }
+        return out;
+    }
+
+    @Override
+    public ArrayList<String> undo(WorkerManager manager) throws IOException {
+        if(this.arguments.get(0).equals("N I")){
+            ArrayList<String> output = new ArrayList<>();
+            output.add("NU");
+            return output;
+        }
+        manager.undoChangeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
+        ArrayList<String> output = new ArrayList<>();
+        output.add("U");
+        return output;
     }
 }

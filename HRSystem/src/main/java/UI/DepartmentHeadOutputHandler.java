@@ -20,9 +20,18 @@ public class DepartmentHeadOutputHandler {
                 String [] headIdInfo = info.get(0).split(" ");
                 if(headIdInfo[0].equals("S")) {
                     messages = m.getDeleteHeadMessage();
-                    System.out.println(messages.get(0) + headIdInfo[1] + messages.get(1));
+                    System.out.println(messages.get(0) + headIdInfo[2] + messages.get(1));
                 }else{
                     System.out.println(m.getNoMatchHeadMessage());
+                }
+                break;
+            case "undo":
+                if(info.get(0).equals("U")){
+                    System.out.println(m.getUndoSuccessMessage());
+                }else if(info.get(0).equals("NU")){
+                    System.out.println(m.getNotUndoableMessage());
+                }else{
+                    System.out.println(m.getNoPreviousCommandMessage());
                 }
                 break;
             case "exit":

@@ -1,5 +1,6 @@
 package DepartmentHeadOperations;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,4 +11,6 @@ public interface HeadCommands {
      * @return the information needed to form output
      */
     ArrayList<String> execute(DepartmentHeadManager manager) throws IOException;
+
+    ArrayList<String> undo(DepartmentHeadManager manager) throws IOException;
 }

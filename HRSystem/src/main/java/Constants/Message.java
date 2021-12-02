@@ -16,6 +16,8 @@ public class Message {
         messages.add("Enter 7 followed by the name of the worker that want to be searched separated by a space to search a worker with the given name from the system");
         messages.add("Enter 8 followed by more if want to find department head with more years of experience than the given year, less if want to find department head with less years of experience and followed by the target year of experience separated by a space to search department head");
         messages.add("Enter 9 to check all workers and department heads created");
+        messages.add("Enter 10 to undo the previous operation to worker");
+        messages.add("Enter 11 to undo the previous operation to department head");
         messages.add("Enter exit to exit the system");
         messages.add("Please enter what you want to do");
         return messages;
@@ -122,5 +124,17 @@ public class Message {
         messages.add(" with ");
         messages.add(" years of experience");
         return messages;
+    }
+
+    public String getUndoSuccessMessage(){
+        return "Your previous operations have been undone";
+    }
+
+    public String getNotUndoableMessage(){
+        return "Your previous operations have no affect on the system but they are still been undone";
+    }
+
+    public String getNoPreviousCommandMessage(){
+        return "There is no previous command";
     }
 }

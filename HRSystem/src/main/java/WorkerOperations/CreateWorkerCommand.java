@@ -15,6 +15,14 @@ public class CreateWorkerCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.createWorker(this.arguments, false);
+        return manager.createWorker(this.arguments,false);
+    }
+
+    @Override
+    public ArrayList<String> undo(WorkerManager manager) throws IOException{
+        manager.undoCreateWorker(false);
+        ArrayList<String> output = new ArrayList<>();
+        output.add("U");
+        return output;
     }
 }

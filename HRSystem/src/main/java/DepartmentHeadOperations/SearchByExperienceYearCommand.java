@@ -19,4 +19,11 @@ public class SearchByExperienceYearCommand implements HeadCommands {
     public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
         return manager.searchByExperienceYear(this.arguments.get(0), Integer.parseInt(this.arguments.get(1)));
     }
+
+    @Override
+    public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
+        ArrayList<String> output = new ArrayList<>();
+        output.add("NU");
+        return output;
+    }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeleteWorkerCommand implements WorkerCommands {
-    final private ArrayList<String> arguments;
+    private ArrayList<String> arguments;
 
     public DeleteWorkerCommand(ArrayList<String> arguments){
         this.arguments = arguments;
@@ -16,6 +16,35 @@ public class DeleteWorkerCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.deleteWorker(Integer.parseInt(this.arguments.get(0)),false);
+        ArrayList<String> out = manager.deleteWorker(Integer.parseInt(this.arguments.get(0)),false);
+        if(out.get(0).equals("N I")){
+            this.arguments = out;
+        }else{
+            String info = out.remove(0);
+            String [] in = info.split(" ");
+            ArrayList<String> newArg = new ArrayList<>();
+            newArg.add(in[0]);
+            newArg.add(in[1]);
+            newArg.add(in[2]);
+            newArg.add(in[3]);
+            newArg.add(in[4]);
+            newArg.add(in[6]);
+            newArg.add(in[8]);
+            this.arguments = newArg;
+        }
+        return out;
+    }
+
+    @Override
+    public ArrayList<String> undo(WorkerManager manager) throws IOException{
+        if(this.arguments.get(0).equals("N I")){
+            ArrayList<String> output = new ArrayList<>();
+            output.add("NU");
+            return output;
+        }
+        manager.undoDeleteWorker(this.arguments, false);
+        ArrayList<String> output = new ArrayList<>();
+        output.add("U");
+        return output;
     }
 }

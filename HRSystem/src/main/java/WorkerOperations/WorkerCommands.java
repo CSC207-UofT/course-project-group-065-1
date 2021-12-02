@@ -10,4 +10,6 @@ public interface WorkerCommands {
      * @return the information needed to form output
      */
     ArrayList<String> execute(WorkerManager manager) throws IOException;
+
+    ArrayList<String> undo(WorkerManager manager) throws IOException;
 }

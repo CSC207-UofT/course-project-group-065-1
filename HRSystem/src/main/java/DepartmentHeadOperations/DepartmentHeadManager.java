@@ -67,6 +67,7 @@ public class DepartmentHeadManager {
         ArrayList<String> output =  new ArrayList<>();
         for(DepartmentHead head : this.heads){
             if(head.getID() == headID){// get the department head wanted to be deleted
+                output.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
                 this.heads.remove(head);// remove the department head from the list and return the message
                 if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
                 else{readWriter.saveToFile(headFile.headRunFileName(), heads);}// write the new list to ser file
@@ -129,21 +130,17 @@ public class DepartmentHeadManager {
         else{readWriter.saveToFile(headFile.headRunFileName(), new ArrayList<>());}
     }
 
-    public ArrayList<String> undoCreateDepartmentHead(boolean test) throws IOException {
-        ArrayList<String> output = this.deleteHead((this.nextHeadID - 1), test);
+    public void undoCreateDepartmentHead(boolean test) throws IOException {
+        this.deleteHead((this.nextHeadID - 1), test);
         if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
         else{readWriter.saveToFile(headFile.headRunFileName(), heads);}
         this.nextHeadID -= 1;
-        return output;
     }
 
-    public ArrayList<String> undoDeleteHead(String name, int headID, String department, int yearOfExperience,  boolean test) throws IOException {
-        DepartmentHead head = new DepartmentHead(name, headID, department, yearOfExperience);
+    public void undoDeleteHead(ArrayList<String> arguments,  boolean test) throws IOException {
+        DepartmentHead head = new DepartmentHead(arguments.get(0), Integer.parseInt(arguments.get(1)), arguments.get(2), Integer.parseInt(arguments.get(3)));
         this.heads.add(head);
         if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
         else{readWriter.saveToFile(headFile.headRunFileName(), heads);}
-        ArrayList<String> out = new ArrayList<>();
-        out.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
-        return out;
     }
 }
