@@ -12,7 +12,7 @@ public class WorkerCommandExecutor {
      * @param readWriter the readWrite that is used to read and write to ser file
      */
     public WorkerCommandExecutor(WorkerReadWriter readWriter) throws IOException, ClassNotFoundException {
-        this.workerManager = new WorkerManager(readWriter);
+        this.workerManager = new WorkerManager(readWriter, false);
     }
 
     /**

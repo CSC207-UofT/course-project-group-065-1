@@ -15,6 +15,6 @@ public class CreateWorkerCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.createWorker(this.arguments);
+        return manager.createWorker(this.arguments, false);
     }
 }

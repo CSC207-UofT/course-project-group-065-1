@@ -16,6 +16,6 @@ public class ChangeSalaryCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
-        return manager.changeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)));
+        return manager.changeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
     }
 }

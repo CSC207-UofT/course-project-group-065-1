@@ -17,6 +17,6 @@ public class DeleteHeadCommand implements HeadCommands {
      */
     @Override
     public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
-        return manager.deleteHead(Integer.parseInt(this.arguments.get(0)));
+        return manager.deleteHead(Integer.parseInt(this.arguments.get(0)), false);
     }
 }
