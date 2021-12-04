@@ -4,6 +4,7 @@ serializations.
  */
 import DepartmentHeadOperations.DepartmentHeadManager;
 import Data.DepartmentHeadReadWriter;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,7 @@ public class DepartmentHeadManagerTest {
         manager.createDepartmentHead("Bob", "bakery", 10, true);
         manager.createDepartmentHead("Victor", "clothes", 20, true);
         manager.createDepartmentHead("Keith", "food", 3, true);
-        ArrayList<String> output = manager.searchByExperienceYear("more", 15);
+        ArrayList<String> output = manager.searchByExperienceYear(15);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("Victor 1 clothes 20");
         manager.deleteAllHead(true);
@@ -69,4 +70,7 @@ public class DepartmentHeadManagerTest {
         manager.deleteAllHead(true);
         Assertions.assertEquals(expected, output);
     }
+
+
+
 }

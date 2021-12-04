@@ -82,34 +82,40 @@ public class DepartmentHeadManager {
 
     /**
      * return the information of list of department head match the given condition
-     * @param moreOrLess more indicates find department head more than the given experience year and less indicate the opposite
      * @param yearOfExperience the target year of experience that want to look for
      * @return the information needed to form output
      */
-    public ArrayList<String> searchByExperienceYear(String moreOrLess, int yearOfExperience){
-        ArrayList<String> headWithYear = new ArrayList<>();
-        if(moreOrLess.equals("more")){// if the user enter more, then look for department head with more than the given experience year
-            for(DepartmentHead head : this.heads){
-                if(head.getYearOfExperience() > yearOfExperience){
-                    headWithYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
-                }
+    public ArrayList<String> searchByExperienceYear(int yearOfExperience){
+        ArrayList<String> headWithByExperienceYear = new ArrayList<>();
+        for(DepartmentHead head: this.heads){
+            if (head.getYearOfExperience() >= yearOfExperience){ // we wound the head with the given ID
+                headWithByExperienceYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() +" " + head.getYearOfExperience());
             }
-            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
-                headWithYear.add("F");
-            }
-        }else if(moreOrLess.equals("less")){// if the user enter less, then look for department head with less than the given experience year
-            for(DepartmentHead head : this.heads){
-                if(head.getYearOfExperience() < yearOfExperience){
-                    headWithYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() + " " + head.getYearOfExperience());
-                }
-            }
-            if(headWithYear.isEmpty()){// if there is no department head satisfy the condition, then return symbol for no department head match
-                headWithYear.add("F");
-            }
-        }else{
-            headWithYear.add("I");
         }
-        return headWithYear;
+        if(headWithByExperienceYear.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head match
+            headWithByExperienceYear.add("F");
+
+        }
+        return headWithByExperienceYear;
+    }
+
+    /**
+     * return the list of department head's information with the given name
+     * @param id the department head's name that we want to search
+     * @return the information needed to form output
+     */
+    public ArrayList<String> searchByID(int id){
+        ArrayList<String> headWithID = new ArrayList<>();
+        for(DepartmentHead head: this.heads){
+            if (head.getID() == id){ // we wound the head with the given ID
+                headWithID.add(head.getName() + " " + head.getID() + " " + head.getDepartment() +" " + head.getYearOfExperience());
+            }
+        }
+        if(headWithID.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head match
+            headWithID.add("F");
+
+        }
+        return headWithID;
     }
 
     /**
