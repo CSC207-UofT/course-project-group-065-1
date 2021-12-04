@@ -59,7 +59,10 @@ public class WorkerOutputHandler {
                 if(info.size() == 1 && info.get(0).split(" ").length == 1){
                     if(info.get(0).equals("f")){
                         System.out.println(m.getNoWorkerNameMessage());
-                    }else {
+                    }else if(info.get(0).equals("F")) {
+                        System.out.println(m.getNoWorkerIDMessage());
+                    }
+                    else {
                         System.out.println(m.getInvalidInputMessage());
                     }
                 }else {

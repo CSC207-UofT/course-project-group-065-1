@@ -65,9 +65,26 @@ public class WorkerInputHandler {
                 }
                 break;
             case "7":
-                SearchByNameCommand searchByName = new SearchByNameCommand(arguments);
-                output.add("list");
-                output.addAll(workerExecutor.executeWorkerCommand(searchByName));
+                if(arguments.get(0).equals("name")) {
+                    arguments.remove(0);
+                    SearchByNameCommand searchByName = new SearchByNameCommand(arguments);
+                    output.add("list");
+                    output.addAll(workerExecutor.executeWorkerCommand(searchByName));
+                }
+                else if(arguments.get(0).equals("id")){
+                    if(checkInt(arguments.get(1))) {
+                        arguments.remove(0);
+                        SearchByIDCommand searchByID = new SearchByIDCommand(arguments);
+                        output.add("list");
+                        output.addAll(workerExecutor.executeWorkerCommand(searchByID));
+                    }
+                    else {
+                        output.add("invalid");
+                    }
+                }
+                else {
+                    output.add("invalid");
+                }
                 break;
             case "9":
                 AllWorkerCommand allWorker = new AllWorkerCommand();
