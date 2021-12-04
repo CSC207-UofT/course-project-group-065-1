@@ -46,12 +46,27 @@ public class DepartmentHeadInputHandler {
                 }
                 break;
             case "8":
-                if(checkInt(arguments.get(1))) {
-                    SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand(arguments);
-                    output.add("list");
-                    output.addAll(headExecutor.executeHeadCommand(searchByYear));
-                }else{
-                    output.add("invalid");
+                if(arguments.get(0).equals("year")) {
+                    if(checkInt(arguments.get(1))) {
+                        arguments.remove(0);
+                        SearchByExperienceYearCommand searchByYear = new SearchByExperienceYearCommand(arguments);
+                        output.add("list");
+                        output.addAll(headExecutor.executeHeadCommand(searchByYear));
+                    }
+                    else {output.add("invalid");
+                    }
+                }
+                else if (arguments.get(0).equals("id")){
+                    if(checkInt(arguments.get(1))) {
+                        arguments.remove(0);
+                        SearchByIDCommand searchByID = new SearchByIDCommand(arguments);
+                        output.add("list");
+                        output.addAll(headExecutor.executeHeadCommand(searchByID));
+                    }
+                    else {output.add("invalid");
+                    }
+                }
+                else {output.add("invalid");
                 }
                 break;
             case "9":

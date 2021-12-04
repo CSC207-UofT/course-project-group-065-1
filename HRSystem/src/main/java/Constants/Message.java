@@ -14,7 +14,7 @@ public class Message {
         messages.add("Enter 5 followed by the id of the worker that want to be deleted separated by a space to delete a worker from the system");
         messages.add("Enter 6 followed by the id of the department head that want to be deleted separated by a space to delete a department head from the system");
         messages.add("Enter 7 followed by either \"name\" to search for a worker by name or \"id\" to search for a worker with their id number followed by the name or id to search, separated by a space (case sensitive).");
-        messages.add("Enter 8 followed by more if want to find department head with more years of experience than the given year, less if want to find department head with less years of experience and followed by the target year of experience separated by a space to search department head");
+        messages.add("Enter 8 followed by either \"id\" to search for a department head with the id or \"year\" to find department head with more years of experience than the given year followed by the target year of experience separated by a space to search department head");
         messages.add("Enter 9 to check all workers and department heads created");
         messages.add("Enter 10 to undo the previous operation to worker");
         messages.add("Enter 11 to undo the previous operation to department head");

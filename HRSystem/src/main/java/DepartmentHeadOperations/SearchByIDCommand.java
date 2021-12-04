@@ -3,11 +3,11 @@ package DepartmentHeadOperations;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchByExperienceYearCommand implements HeadCommands {
+public class SearchByIDCommand implements HeadCommands {
 
     final private ArrayList<String> arguments;
 
-    public SearchByExperienceYearCommand(ArrayList<String> arguments){
+    public SearchByIDCommand(ArrayList<String> arguments){
         this.arguments = arguments;
     }
     /**
@@ -16,12 +16,12 @@ public class SearchByExperienceYearCommand implements HeadCommands {
      * @return the information needed to form output
      */
     @Override
-    public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
-        return manager.searchByExperienceYear(Integer.parseInt(this.arguments.get(0)));
+    public ArrayList<String> execute(DepartmentHeadManager manager) {
+        return manager.searchByID(Integer.parseInt(this.arguments.get(0)));
     }
 
     @Override
-    public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
+    public ArrayList<String> undo(DepartmentHeadManager manager){
         ArrayList<String> output = new ArrayList<>();
         output.add("NU");
         return output;
