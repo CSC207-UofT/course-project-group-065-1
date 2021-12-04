@@ -56,6 +56,20 @@ public class DepartmentHeadManagerTest {
     }
 
     @Test
+    public void testSearchByID() throws IOException, ClassNotFoundException {
+        DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
+        manager = new DepartmentHeadManager(readWriter, true);
+        manager.createDepartmentHead("Bob", "bakery", 10, true);
+        manager.createDepartmentHead("Victor", "clothes", 20, true);
+        manager.createDepartmentHead("Keith", "food", 3, true);
+        ArrayList<String> output = manager.searchByID(1);
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Victor 1 clothes 20");
+        manager.deleteAllHead(true);
+        Assertions.assertEquals(expected, output);
+    }
+
+    @Test
     public void testAllHeads() throws IOException, ClassNotFoundException {
         DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
         manager = new DepartmentHeadManager(readWriter, true);
@@ -70,6 +84,7 @@ public class DepartmentHeadManagerTest {
         manager.deleteAllHead(true);
         Assertions.assertEquals(expected, output);
     }
+
 
 
 
