@@ -13,7 +13,7 @@ public class Message {
         messages.add("Enter 4 followed by the id of the worker and the new day of week, start time and end time of the new schedule each separated by a space to change schedule of a worker");
         messages.add("Enter 5 followed by the id of the worker that want to be deleted separated by a space to delete a worker from the system");
         messages.add("Enter 6 followed by the id of the department head that want to be deleted separated by a space to delete a department head from the system");
-        messages.add("Enter 7 followed by the name of the worker that want to be searched separated by a space to search a worker with the given name from the system");
+        messages.add("Enter 7 followed by either \"name\" to search for a worker by name or \"id\" to search for a worker with their id number followed by the name or id to search, separated by a space (case sensitive).");
         messages.add("Enter 8 followed by more if want to find department head with more years of experience than the given year, less if want to find department head with less years of experience and followed by the target year of experience separated by a space to search department head");
         messages.add("Enter 9 to check all workers and department heads created");
         messages.add("Enter 10 to undo the previous operation to worker");
@@ -45,6 +45,10 @@ public class Message {
 
     public String getNoWorkerNameMessage(){
         return "No worker found with the given name";
+    }
+
+    public String getNoWorkerIDMessage(){
+        return "No worker found with the given id";
     }
 
     public String getNoHeadMatchMessage(){

@@ -143,6 +143,24 @@ public class WorkerManager {
     }
 
     /**
+     * return the list of workers' information with the given name
+     * @param id the worker name that want to search
+     * @return the information needed to form output
+     */
+    public ArrayList<String> searchByID(int id){
+        ArrayList<String> workerWithID = new ArrayList<>();
+        for(Worker worker : this.workers){
+            if(worker.getID() == id){// found worker with given id
+                workerWithID.add(worker.getName() + " " + worker.getID() + " " + worker.getDepartment() + " " + worker.getSalary() + " " + worker.getSchedule().toString());
+            }
+        }
+        if(workerWithID.isEmpty()){// no worker with the given ID, then return no worker found symbol
+            workerWithID.add("F");
+        }
+        return workerWithID;
+    }
+
+    /**
      * return all workers' information in the system
      * @return the information needed to form output
      */
