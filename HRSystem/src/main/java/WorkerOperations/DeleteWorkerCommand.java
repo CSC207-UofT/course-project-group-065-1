@@ -17,13 +17,13 @@ public class DeleteWorkerCommand implements WorkerCommands {
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
         ArrayList<String> out = manager.deleteWorker(Integer.parseInt(this.arguments.get(0)),false);
-        if(out.get(0).equals("N I")){
+        if(out.get(0).equals("N I")){// the delete is not successful
             this.arguments = out;
         }else{
             String info = out.remove(0);
             String [] in = info.split(" ");
             ArrayList<String> newArg = new ArrayList<>();
-            newArg.add(in[0]);
+            newArg.add(in[0]);// change arguments
             newArg.add(in[1]);
             newArg.add(in[2]);
             newArg.add(in[3]);
@@ -42,14 +42,14 @@ public class DeleteWorkerCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException{
-        if(this.arguments.get(0).equals("N I")){
+        if(this.arguments.get(0).equals("N I")){// if delete is not successful, then return undo has no affect
             ArrayList<String> output = new ArrayList<>();
             output.add("NU");
             return output;
         }
         manager.undoDeleteWorker(this.arguments, false);
         ArrayList<String> output = new ArrayList<>();
-        output.add("U");
+        output.add("U");// undo successful
         return output;
     }
 }

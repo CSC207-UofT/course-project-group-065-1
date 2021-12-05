@@ -13,7 +13,7 @@ public class NoOpHeadCommand implements HeadCommands{
     @Override
     public ArrayList<String> execute(DepartmentHeadManager manager) throws IOException {
         ArrayList<String> output = new ArrayList<>();
-        output.add("N P");
+        output.add("N P");// indicates no previous commands
         return output;
     }
 
@@ -25,7 +25,7 @@ public class NoOpHeadCommand implements HeadCommands{
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         ArrayList<String> output = new ArrayList<>();
-        output.add("N P");
+        output.add("N P");// indicates no previous commands
         return output;
     }
 }

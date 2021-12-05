@@ -30,7 +30,7 @@ public class CreateHeadCommand implements HeadCommands {
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         manager.undoCreateDepartmentHead(false);
         ArrayList<String> output = new ArrayList<>();
-        output.add("U");
+        output.add("U"); // indicates that the command can be undone and it is already undone
         return output;
     }
 }

@@ -17,10 +17,10 @@ public class ChangeSalaryCommand implements WorkerCommands {
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
         ArrayList<String> out = manager.changeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
-        if(out.get(0).equals("N I")){
+        if(out.get(0).equals("N I")){// indicates the change salary is not successful
             this.arguments = out;
         }else{
-            this.arguments.remove(1);
+            this.arguments.remove(1);// update arugments
             this.arguments.add(out.remove(0));
         }
         return out;
@@ -33,14 +33,14 @@ public class ChangeSalaryCommand implements WorkerCommands {
      */
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException {
-        if(this.arguments.get(0).equals("N I")){
+        if(this.arguments.get(0).equals("N I")){// if the change is not successful, then return undo command has no affect on program
             ArrayList<String> output = new ArrayList<>();
             output.add("NU");
             return output;
         }
         manager.undoChangeSalary(Integer.parseInt(this.arguments.get(0)), Double.parseDouble(this.arguments.get(1)), false);
         ArrayList<String> output = new ArrayList<>();
-        output.add("U");
+        output.add("U");// indicate undo is successful
         return output;
     }
 }
