@@ -54,7 +54,7 @@ public class DeleteHeadCommand implements HeadCommands {
         // If the delete department head is successful, call the undo method with the deleted department head information
         manager.undoDeleteHead(this.arguments, false);
         ArrayList<String> output = new ArrayList<>();
-        output.add("U");
+        output.add("U");// undo successful
         return output;
     }
 }

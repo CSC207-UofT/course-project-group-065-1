@@ -28,7 +28,7 @@ public class SearchByExperienceYearCommand implements HeadCommands {
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         ArrayList<String> output = new ArrayList<>();
-        output.add("NU");
+        output.add("NU");// undo have no affect on program
         return output;
     }
 }
