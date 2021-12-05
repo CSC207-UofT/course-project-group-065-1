@@ -20,6 +20,11 @@ public class SearchByExperienceYearCommand implements HeadCommands {
         return manager.searchByExperienceYear(Integer.parseInt(this.arguments.get(0)));
     }
 
+    /**
+     * undo the search by experience year command which doesn't need to change anything
+     * @param manager the use case class that contains methods to undo the command
+     * @return information needed to form output
+     */
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         ArrayList<String> output = new ArrayList<>();

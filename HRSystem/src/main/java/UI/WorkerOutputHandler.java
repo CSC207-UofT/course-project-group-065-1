@@ -5,6 +5,11 @@ import Constants.Message;
 import java.util.ArrayList;
 
 public class WorkerOutputHandler {
+    /**
+     * display outputs that user should see based on information given from controller
+     * @param operations indicates what operations has been performed
+     * @param info information needed to form specific output
+     */
     public void display(String operations, ArrayList<String> info){
         Message m = new Message();
         ArrayList<String> messages;

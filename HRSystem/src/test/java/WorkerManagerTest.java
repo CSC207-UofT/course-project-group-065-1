@@ -1,7 +1,3 @@
-/*
-When running this test, you will have to create 2 new ser files in order for this to work since we use
-serializations.
- */
 import WorkerOperations.WorkerManager;
 import Data.WorkerReadWriter;
 import org.junit.Before;

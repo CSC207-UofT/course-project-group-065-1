@@ -27,10 +27,19 @@ public class WorkerCommandExecutor {
         return operation.execute(this.workerManager);
     }
 
+    /**
+     * undo the given command
+     * @param operation the command object that needs to be undone
+     * @return the information needed to form output
+     */
     public ArrayList<String> undoWorkerCommand(WorkerCommands operation) throws IOException {
         return operation.undo(this.workerManager);
     }
 
+    /**
+     * return the previous worker command
+     * @return the previous worker comamnd
+     */
     public WorkerCommands previousCommand(){
         if(this.history.isEmpty()){
             return new NoOpWorkerCommand();

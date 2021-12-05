@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class DemoRun {
     public static void main(String [] args) throws IOException, ClassNotFoundException {
-        // demo run of the HR System by define a new web.CmdLineUI instance and run the user interface
+        // demo run of the HR System by define a new web.CmdLineUI instance and run the user command line interface
         WorkerOutputHandler worker = new WorkerOutputHandler();
         DepartmentHeadOutputHandler head = new DepartmentHeadOutputHandler();
         OptionMenuPresenter menu = new OptionMenuPresenter();

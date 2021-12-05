@@ -1,10 +1,5 @@
-/*
-When running this test, you will have to create 2 new ser files in order for this to work since we use
-serializations.
- */
 import DepartmentHeadOperations.DepartmentHeadManager;
 import Data.DepartmentHeadReadWriter;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
