@@ -38,7 +38,7 @@ public class WorkerCommandExecutor {
 
     /**
      * return the previous worker command
-     * @return the previous worker comamnd
+     * @return the previous worker command
      */
     public WorkerCommands previousCommand(){
         if(this.history.isEmpty()){
