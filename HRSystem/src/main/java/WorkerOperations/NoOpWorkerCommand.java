@@ -13,7 +13,7 @@ public class NoOpWorkerCommand implements WorkerCommands{
     @Override
     public ArrayList<String> execute(WorkerManager manager) throws IOException {
         ArrayList<String> output = new ArrayList<>();
-        output.add("N P");
+        output.add("N P");// no previous command
         return output;
     }
 
@@ -25,7 +25,7 @@ public class NoOpWorkerCommand implements WorkerCommands{
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException{
         ArrayList<String> output = new ArrayList<>();
-        output.add("N P");
+        output.add("N P");// no previous command
         return output;
     }
 }

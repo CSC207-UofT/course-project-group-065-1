@@ -91,11 +91,11 @@ public class DepartmentHeadManager {
     public ArrayList<String> searchByExperienceYear(int yearOfExperience){
         ArrayList<String> headWithByExperienceYear = new ArrayList<>();
         for(DepartmentHead head: this.heads){
-            if (head.getYearOfExperience() >= yearOfExperience){ // we wound the head with the given ID
+            if (head.getYearOfExperience() >= yearOfExperience){ // we want the head with the more years of experience
                 headWithByExperienceYear.add(head.getName() + " " + head.getID() + " " + head.getDepartment() +" " + head.getYearOfExperience());
             }
         }
-        if(headWithByExperienceYear.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head match
+        if(headWithByExperienceYear.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head found with more years of experience
             headWithByExperienceYear.add("F");
 
         }
@@ -110,11 +110,11 @@ public class DepartmentHeadManager {
     public ArrayList<String> searchByID(int id){
         ArrayList<String> headWithID = new ArrayList<>();
         for(DepartmentHead head: this.heads){
-            if (head.getID() == id){ // we wound the head with the given ID
+            if (head.getID() == id){ // we want the head with the given ID
                 headWithID.add(head.getName() + " " + head.getID() + " " + head.getDepartment() +" " + head.getYearOfExperience());
             }
         }
-        if(headWithID.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head match
+        if(headWithID.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head found with given id
             headWithID.add("f");
 
         }

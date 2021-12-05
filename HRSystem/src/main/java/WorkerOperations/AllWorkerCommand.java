@@ -22,7 +22,7 @@ public class AllWorkerCommand implements WorkerCommands {
     @Override
     public ArrayList<String> undo(WorkerManager manager){
         ArrayList<String> output = new ArrayList<>();
-        output.add("NU");
+        output.add("NU");// undo the command has no affect on program
         return output;
     }
 }

@@ -22,7 +22,7 @@ public class AllHeadCommand implements HeadCommands {
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         ArrayList<String> output = new ArrayList<>();
-        output.add("NU");
+        output.add("NU"); // indicates that this undo has no affect on program
         return output;
     }
 }

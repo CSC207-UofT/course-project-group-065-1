@@ -48,7 +48,7 @@ public class DeleteHeadCommand implements HeadCommands {
         if(this.arguments.get(0).equals("N I")){
             // If the delete department head is not successful, don't call methods in use case
             ArrayList<String> output = new ArrayList<>();
-            output.add("NU");
+            output.add("NU"); // indicates this undo has no affect on program record
             return output;
         }
         // If the delete department head is successful, call the undo method with the deleted department head information

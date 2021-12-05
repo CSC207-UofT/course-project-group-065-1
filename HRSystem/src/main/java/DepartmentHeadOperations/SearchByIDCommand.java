@@ -27,7 +27,7 @@ public class SearchByIDCommand implements HeadCommands {
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager){
         ArrayList<String> output = new ArrayList<>();
-        output.add("NU");
+        output.add("NU");// undo has no affect on program
         return output;
     }
 }

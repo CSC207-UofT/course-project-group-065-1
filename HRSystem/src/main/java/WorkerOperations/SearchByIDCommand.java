@@ -26,7 +26,7 @@ public class SearchByIDCommand implements WorkerCommands {
     @Override
     public ArrayList<String> undo(WorkerManager manager){
         ArrayList<String> output = new ArrayList<>();
-        output.add("NU");
+        output.add("NU");// undo has no affect
         return output;
     }
 }

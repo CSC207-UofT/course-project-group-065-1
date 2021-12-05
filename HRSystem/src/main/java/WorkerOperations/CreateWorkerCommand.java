@@ -27,7 +27,7 @@ public class CreateWorkerCommand implements WorkerCommands {
     public ArrayList<String> undo(WorkerManager manager) throws IOException{
         manager.undoCreateWorker(false);
         ArrayList<String> output = new ArrayList<>();
-        output.add("U");
+        output.add("U");// undo is successful
         return output;
     }
 }

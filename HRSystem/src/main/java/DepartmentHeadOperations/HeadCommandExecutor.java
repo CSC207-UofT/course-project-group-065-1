@@ -41,7 +41,7 @@ public class HeadCommandExecutor {
      */
     public HeadCommands previousCommand(){
         if(this.history.isEmpty()){
-            return new NoOpHeadCommand();
+            return new NoOpHeadCommand();// no operation command which doesn't do anything
         }
         return this.history.remove(this.history.size() - 1);
     }
