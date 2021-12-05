@@ -18,6 +18,11 @@ public class CreateWorkerCommand implements WorkerCommands {
         return manager.createWorker(this.arguments,false);
     }
 
+    /**
+     * undo the create worker command
+     * @param manager the use case class that contains method needed to undo the command
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException{
         manager.undoCreateWorker(false);

@@ -10,7 +10,7 @@ public class ChangeScheduleCommand implements WorkerCommands {
         this.arguments = arguments;
     }
     /**
-     * execute the change schedule commands
+     * execute the change schedule commands and change arguments to allow undo
      * @param manager the use case class that contains methods that is needed to execute the command
      * @return the information needed to form output
      */
@@ -32,6 +32,11 @@ public class ChangeScheduleCommand implements WorkerCommands {
         return out;
     }
 
+    /**
+     * undo the change schedule command
+     * @param manager the use case class that contains methods that is needed to undo the command
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException {
         if(this.arguments.get(0).equals("N I")){

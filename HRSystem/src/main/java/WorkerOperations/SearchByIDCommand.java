@@ -18,6 +18,11 @@ public class SearchByIDCommand implements WorkerCommands {
         return manager.searchByID(Integer.parseInt(this.arguments.get(0)));
     }
 
+    /**
+     * undo the search by name command
+     * @param manager the use case class that contains methods that is needed to undo the command
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(WorkerManager manager){
         ArrayList<String> output = new ArrayList<>();

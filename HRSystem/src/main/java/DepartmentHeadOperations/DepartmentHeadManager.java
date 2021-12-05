@@ -14,6 +14,7 @@ public class DepartmentHeadManager {
     /**
      * Constructor of DepartmentHeadManager
      * @param readWriter the readWriter that is used to read and write list of department heads to the ser file
+     * @param test true when this is used for testing and false when this is used for running program
      */
     public DepartmentHeadManager(DepartmentHeadReadWriter readWriter, boolean test) throws IOException, ClassNotFoundException {
         // initialize the readWrite to the given readWriter
@@ -41,6 +42,7 @@ public class DepartmentHeadManager {
      * @param name the name of the department head
      * @param department the department of the department head
      * @param yearOfExperience the number of years of experience the department head has
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> createDepartmentHead(String name, String department, int yearOfExperience, boolean test) throws IOException {
@@ -61,6 +63,7 @@ public class DepartmentHeadManager {
     /**
      * delete a department head given the ID
      * @param headID the department head id that wants to be deleted
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> deleteHead(int headID, boolean test) throws IOException {
@@ -112,7 +115,7 @@ public class DepartmentHeadManager {
             }
         }
         if(headWithID.isEmpty()) {// if there is no department head satisfy the condition, then return symbol for no department head match
-            headWithID.add("F");
+            headWithID.add("f");
 
         }
         return headWithID;
@@ -131,11 +134,19 @@ public class DepartmentHeadManager {
         return out;
     }
 
+    /**
+     * Delete all department heads in the file
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void deleteAllHead(boolean test) throws IOException {
         if(test){readWriter.saveToFile(headFile.headTestFileName(), new ArrayList<>());}
         else{readWriter.saveToFile(headFile.headRunFileName(), new ArrayList<>());}
     }
 
+    /**
+     * undo create department head
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void undoCreateDepartmentHead(boolean test) throws IOException {
         this.deleteHead((this.nextHeadID - 1), test);
         if(test){readWriter.saveToFile(headFile.headTestFileName(), heads);}
@@ -143,6 +154,11 @@ public class DepartmentHeadManager {
         this.nextHeadID -= 1;
     }
 
+    /**
+     * undo delete department head
+     * @param arguments information about the deleted worker
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void undoDeleteHead(ArrayList<String> arguments,  boolean test) throws IOException {
         DepartmentHead head = new DepartmentHead(arguments.get(0), Integer.parseInt(arguments.get(1)), arguments.get(2), Integer.parseInt(arguments.get(3)));
         this.heads.add(head);

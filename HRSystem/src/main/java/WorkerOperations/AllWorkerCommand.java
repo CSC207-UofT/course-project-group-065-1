@@ -14,6 +14,11 @@ public class AllWorkerCommand implements WorkerCommands {
         return manager.allWorker();
     }
 
+    /**
+     * undo the all worker command which doesn't change anything
+     * @param manager the use case class that contains methods to undo the given command
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(WorkerManager manager){
         ArrayList<String> output = new ArrayList<>();

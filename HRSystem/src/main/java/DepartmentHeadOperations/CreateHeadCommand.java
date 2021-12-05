@@ -21,6 +21,11 @@ public class CreateHeadCommand implements HeadCommands {
         return manager.createDepartmentHead(this.arguments.get(0), this.arguments.get(1), Integer.parseInt(this.arguments.get(2)), false);
     }
 
+    /**
+     * undo create department head command by calling undo create department head method in use case class
+     * @param manager the use case class that contains the method to undo create department head
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager) throws IOException{
         manager.undoCreateDepartmentHead(false);

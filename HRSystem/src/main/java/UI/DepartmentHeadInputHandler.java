@@ -11,7 +11,7 @@ public class DepartmentHeadInputHandler {
 
 
     /**
-     * Constructor of the controller
+     * Constructor of the controller or the input handler for department head
      */
     public DepartmentHeadInputHandler() throws IOException, ClassNotFoundException {
         this.headExecutor = new HeadCommandExecutor(new DepartmentHeadReadWriter());
@@ -89,6 +89,11 @@ public class DepartmentHeadInputHandler {
         return output;
     }
 
+    /**
+     * Check if the given string can be converted to integer
+     * @param input the string that want to check
+     * @return whether the given string can be converted to integer as boolean
+     */
     private boolean checkInt(String input){
         try{
             Integer.parseInt(input);

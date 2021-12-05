@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class DepartmentHeadOutputHandler {
 
+    /**
+     * display outputs that user should see based on information given from controller
+     * @param operations indicates what operations has been performed
+     * @param info information needed to form specific output
+     */
     public void display(String operations, ArrayList<String> info){
         Message m = new Message();
         ArrayList<String> messages;
@@ -41,8 +46,10 @@ public class DepartmentHeadOutputHandler {
                 if(info.size() == 1 && info.get(0).split(" ").length == 1){
                     if(info.get(0).equals("I")) {
                         System.out.println(m.getInvalidInputMessage());
+                    }else if(info.get(0).equals("F")){
+                        System.out.println(m.getNoHeadYearMessage());
                     }else{
-                        System.out.println(m.getNoHeadMatchMessage());
+                        System.out.println(m.getNoHeadIDMessage());
                     }
                 }else {
                     for (String out : info) {

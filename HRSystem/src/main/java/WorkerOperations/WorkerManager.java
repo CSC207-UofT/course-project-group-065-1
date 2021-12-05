@@ -11,8 +11,11 @@ public class WorkerManager {
     private int nextWorkerID;
     ReadWriter readWriter;
     FileName workerFile = new FileName();
+
     /**
-     * Constructor of WorkerCommands.WorkerManager
+     * Constructor of WorkerManager
+     * @param readWriter the readWriter that is used to read and write list of workers to the ser file
+     * @param test true when this is used for testing and false when this is used for running program
      */
     public WorkerManager(WorkerReadWriter readWriter, boolean test) throws IOException, ClassNotFoundException {
         // initialize the readWriter to the given readWriter
@@ -37,6 +40,7 @@ public class WorkerManager {
     /**
      * create the worker if the input are valid
      * @param arguments list of arguments needed
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> createWorker(ArrayList<String> arguments, boolean test) throws IOException {
@@ -57,6 +61,7 @@ public class WorkerManager {
      * change the salary of the given worker
      * @param workerID the ID of the worker
      * @param changePercent the percent that the salary change where positive mean increase and negative mean decrease
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> changeSalary(int workerID,  double changePercent, boolean test) throws IOException {
@@ -80,6 +85,7 @@ public class WorkerManager {
     /**
      * change the schedule of the given worker
      * @param arguments list of arguments needed
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> changeSchedule(ArrayList<String> arguments, boolean test) throws IOException {
@@ -104,6 +110,7 @@ public class WorkerManager {
     /**
      * delete worker with given id
      * @param workerID the id of worker that want to delete
+     * @param test true when this is used for testing and false when this is used for running program
      * @return the information needed to form output
      */
     public ArrayList<String> deleteWorker(int workerID, boolean test) throws IOException {
@@ -172,11 +179,19 @@ public class WorkerManager {
         return output;
     }
 
+    /**
+     * delete all workers in the file
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void deleteAllWorker(boolean test) throws IOException {
         if(test){readWriter.saveToFile(workerFile.workerTestFileName(), new ArrayList<>());}
         else{readWriter.saveToFile(workerFile.workerRunFileName(), new ArrayList<>());}
     }
 
+    /**
+     * undo previous create worker
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void undoCreateWorker(boolean test) throws IOException {
         this.deleteWorker((this.nextWorkerID - 1), test);
         if(test){readWriter.saveToFile(workerFile.workerTestFileName(), workers);}
@@ -184,6 +199,11 @@ public class WorkerManager {
         this.nextWorkerID -= 1;
     }
 
+    /**
+     * undo delete worker
+     * @param arguments the information needed to undo delete worker
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void undoDeleteWorker(ArrayList<String> arguments, boolean test) throws IOException {
         Worker worker = new Worker(arguments.get(0), Double.parseDouble(arguments.get(1)), Integer.parseInt(arguments.get(2)), arguments.get(3), new Schedule(arguments.get(4), arguments.get(5), arguments.get(6)));
         this.workers.add(Integer.parseInt(arguments.get(2)), worker);
@@ -191,6 +211,12 @@ public class WorkerManager {
         else{readWriter.saveToFile(workerFile.workerRunFileName(), workers);}
     }
 
+    /**
+     * undo change salary
+     * @param workerID ID of the worker that want to undo change salary
+     * @param salary the salary changed to
+     * @param test true when this is used for testing and false when this is used for running program
+     */
     public void undoChangeSalary(int workerID,  double salary, boolean test) throws IOException {
         for (Worker worker : this.workers) {
             if (worker.getID() == workerID) {

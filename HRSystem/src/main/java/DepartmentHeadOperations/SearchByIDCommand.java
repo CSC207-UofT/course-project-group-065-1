@@ -1,6 +1,5 @@
 package DepartmentHeadOperations;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchByIDCommand implements HeadCommands {
@@ -11,7 +10,7 @@ public class SearchByIDCommand implements HeadCommands {
         this.arguments = arguments;
     }
     /**
-     * execute the search by experience year command by calling method from the given use case class
+     * execute the search by ID command by calling method from the given use case class
      * @param manager the use case class that contains methods to execute the command
      * @return the information needed to form output
      */
@@ -20,6 +19,11 @@ public class SearchByIDCommand implements HeadCommands {
         return manager.searchByID(Integer.parseInt(this.arguments.get(0)));
     }
 
+    /**
+     * undo the search by ID command which doesn't change anything
+     * @param manager the use case class that contains methods to undo the command
+     * @return information needed to form output
+     */
     @Override
     public ArrayList<String> undo(DepartmentHeadManager manager){
         ArrayList<String> output = new ArrayList<>();
