@@ -11,7 +11,7 @@ public class WorkerInputHandler {
 
 
     /**
-     * Constructor of the controller
+     * Constructor of the controller or input handler of worker
      */
     public WorkerInputHandler() throws IOException, ClassNotFoundException {
         this.workerExecutor = new WorkerCommandExecutor(new WorkerReadWriter());
@@ -106,6 +106,11 @@ public class WorkerInputHandler {
         return output;
     }
 
+    /**
+     * check whether the given string can be converted to a double
+     * @param input the string that we want to check
+     * @return whether the given string can be converted to a double as boolean
+     */
     private boolean checkDouble(String input){
         try{
             Double.parseDouble(input);
@@ -115,6 +120,11 @@ public class WorkerInputHandler {
         }
     }
 
+    /**
+     * check whether the given string can be converted to an integer
+     * @param input the string that we want to check
+     * @return whether the given string can be converted to an integer as boolean
+     */
     private boolean checkInt(String input){
         try{
             Integer.parseInt(input);

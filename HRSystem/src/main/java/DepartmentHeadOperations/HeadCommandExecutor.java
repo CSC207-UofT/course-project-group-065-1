@@ -26,10 +26,19 @@ public class HeadCommandExecutor {
         return operation.execute(this.headManager);
     }
 
+    /**
+     * execute the undo method with the given command object
+     * @param operation the command object want to be undone
+     * @return the information needed to form output
+     */
     public ArrayList<String> undoHeadCommand(HeadCommands operation) throws IOException {
         return operation.undo(this.headManager);
     }
 
+    /**
+     * get the previous command of department head
+     * @return the previous command of deparatment head
+     */
     public HeadCommands previousCommand(){
         if(this.history.isEmpty()){
             return new NoOpHeadCommand();

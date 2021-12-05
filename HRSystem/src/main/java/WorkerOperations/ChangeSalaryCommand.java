@@ -10,7 +10,7 @@ public class ChangeSalaryCommand implements WorkerCommands {
         this.arguments = arguments;
     }
     /**
-     * execute the change salary command
+     * execute the change salary command and modify the arguments to allow undo
      * @param manager the user class that contains methods to execute the change salary command
      * @return the information needed to form output
      */
@@ -26,6 +26,11 @@ public class ChangeSalaryCommand implements WorkerCommands {
         return out;
     }
 
+    /**
+     * undo the change salary command with the undo method
+     * @param manager the user class that contains methods to undo the change salary command
+     * @return the information needed to form output
+     */
     @Override
     public ArrayList<String> undo(WorkerManager manager) throws IOException {
         if(this.arguments.get(0).equals("N I")){
