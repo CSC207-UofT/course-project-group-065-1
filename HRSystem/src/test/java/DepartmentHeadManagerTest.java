@@ -80,6 +80,36 @@ public class DepartmentHeadManagerTest {
         Assertions.assertEquals(expected, output);
     }
 
+    @Test
+    public void testUndoCreateDepartmentHead() throws IOException, ClassNotFoundException {
+        DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
+        manager = new DepartmentHeadManager(readWriter, true);
+        manager.createDepartmentHead("Bob", "bakery", 10, true);
+        manager.createDepartmentHead("Victor", "clothes", 20, true);
+        manager.createDepartmentHead("Keith", "food", 3, true);
+        manager.undoCreateDepartmentHead(true);
+        ArrayList<String> output = manager.allHeads();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Bob 0 bakery 10");
+        expected.add("Victor 1 clothes 20");
+        manager.deleteAllHead(true);
+        Assertions.assertEquals(expected, output);
+    }
+
+    @Test
+    public void testUndoDeleteHead() throws IOException, ClassNotFoundException {
+        DepartmentHeadReadWriter readWriter = new DepartmentHeadReadWriter();
+        manager = new DepartmentHeadManager(readWriter, true);
+        manager.createDepartmentHead("Bob", "bakery", 10, true);
+        manager.deleteHead(0, true);
+        ArrayList<String> argument = new ArrayList<>(List.of("Bob", "0", "bakery", "10"));
+        manager.undoDeleteHead(argument, true);
+        ArrayList<String> output = manager.allHeads();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Bob 0 bakery 10");
+        manager.deleteAllHead(true);
+        Assertions.assertEquals(expected, output);
+    }
 
 
 
