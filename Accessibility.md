@@ -45,4 +45,6 @@ An essential part of any business is the people. Due to the scope and functional
 
 
 # **Less use by some demographics:**
-Due to the design of the software, our program will be less used by some demographics. For example, since the program is only in English, it won’t be uselful to non-English speaking people of foreign businesses. Furthermore, the average consumer has no business, therefore they have no use for an HR system. In addition, lack of accessibility features would mean blind people people would not be able to use the software.
+Due to the design of the software, our program will be used less by some demographics. For example, since the program is only in English, it won’t be useful to 
+non-English speaking people of foreign businesses. Furthermore, the average consumer has no business, therefore they have no use for an HR system. In addition, 
+lack of accessibility features would mean blind people people would not be able to use the software.
