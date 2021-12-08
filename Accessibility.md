@@ -38,3 +38,11 @@ could implement a graphical user interface that retains the menu’s simplicity 
 # **Adhere, or potential feature adheres to Size and Space for Approach and Use:**
 This principle does not apply to our program, as our entire software is on the computer. Therefore, regardless of the user's body size, posture, or mobility, the 
 program will run the same. The screen can be maximized to the size of the screen as we are using a command-line interface.
+
+
+# **Target Customer of Program:**
+An essential part of any business is the people. Due to the scope and functionality of our program, our target consumers would be small to medium size businesses. All businesses have an HR department that needs to keep track of workers and managers. Our software is designed to keep track of these along with functions such as hiring/firing, changing salary, creating schedules or searching through workers. This would be ideal for new start-ups that need such software.
+
+
+# **Less use by some demographics:**
+Due to the design of the software, our program will be less used by some demographics. For example, since the program is only in English, it won’t be uselful to non-English speaking people of foreign businesses. Furthermore, the average consumer has no business, therefore they have no use for an HR system. In addition, lack of accessibility features would mean blind people people would not be able to use the software.
